@@ -4,17 +4,19 @@ Path: 001-llm-general\001-llm-general-index.md
 
 ## 0. Terms
 
-- **Token**: A unit of text that an LLM reads and predicts. A token can be a full word, part of a word, punctuation, whitespace, byte sequence, or special control marker.
-- **Tokenizer**: The algorithm and files that convert text into token IDs and convert token IDs back into text.
-- **Vocabulary**: The standard term for the complete set of tokens a tokenizer can produce. It can also be called the tokenizer vocabulary or token vocabulary.
-- **Vocabulary size**: The number of possible token IDs in the tokenizer vocabulary.
-- **Token ID**: The numeric identifier assigned to a token.
-- **Embedding**: A learned vector representation of a token ID inside the model.
-- **Context size**: The maximum number of tokens a model can read in one prompt or conversation window.
-- **BPE**: Byte pair encoding, a common tokenizer training method that builds tokens from frequent character or byte sequences.
-- **SentencePiece**: A tokenizer framework often used for LLMs. It can implement methods such as BPE or Unigram.
-- **RAG**: Retrieval-augmented generation. A system pattern where relevant external information is retrieved and inserted into the prompt before the model answers.
-- **Fine-tuning**: Additional training on a specific dataset to adjust a model's behavior or knowledge.
+| Term | Short explanation |
+| --- | --- |
+| **Token** | A unit of text that an LLM reads and predicts. A token can be a full word, part of a word, punctuation, whitespace, byte sequence, or special control marker. |
+| **Tokenizer** | The algorithm and files that convert text into token IDs and convert token IDs back into text. |
+| **Vocabulary** | The standard term for the complete set of tokens a tokenizer can produce. It can also be called the tokenizer vocabulary or token vocabulary. |
+| **Vocabulary size** | The number of possible token IDs in the tokenizer vocabulary. |
+| **Token ID** | The numeric identifier assigned to a token. |
+| **Embedding** | A learned vector representation of a token ID inside the model. |
+| **Context size** | The maximum number of tokens a model can read in one prompt or conversation window. |
+| **BPE** | Byte pair encoding, a common tokenizer training method that builds tokens from frequent character or byte sequences. |
+| **SentencePiece** | A tokenizer framework often used for LLMs. It can implement methods such as BPE or Unigram. |
+| **RAG** | Retrieval-augmented generation. A system pattern where relevant external information is retrieved and inserted into the prompt before the model answers. |
+| **Fine-tuning** | Additional training on a specific dataset to adjust a model's behavior or knowledge. |
 
 ## 1. How Tokens Are Created Before LLM Training
 
