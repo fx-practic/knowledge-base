@@ -199,3 +199,149 @@ These solve different problems:
 | New skill or behavior | Fine-tuning or continued training may be needed. |
 
 RAG is especially useful when the model must answer from information that changes often, such as company policies, documentation, prices, legal text, customer records, or recent events.
+
+## 11. Tokenizer
+
+A **tokenizer** is the component that turns raw text into tokens and token IDs.
+
+It does three jobs:
+
+| Job | Meaning |
+| --- | --- |
+| **Split** | Break raw text into tokens or token pieces. |
+| **Encode** | Convert tokens into numeric token IDs. |
+| **Decode** | Convert token IDs back into text. |
+
+Simple flow:
+
+```text
+raw text -> tokenizer -> tokens -> token IDs
+token IDs -> tokenizer -> text
+```
+
+A tokenizer does not simply convert whole words into tokens. It first decides how to split the text.
+
+Example:
+
+```text
+unbelievable
+```
+
+may become:
+
+```text
+un + believable
+```
+
+or:
+
+```text
+un + believ + able
+```
+
+depending on the tokenizer.
+
+Tokens can be:
+
+| Token type | Example |
+| --- | --- |
+| Whole word | `hello` |
+| Word part | `ing` |
+| Space plus word | ` hello` |
+| Punctuation | `.` |
+| Number | `2026` |
+| Code symbol | `()` |
+| Byte piece | Part of an unusual symbol or unknown text. |
+| Special marker | End-of-text, system message, user message, tool call marker. |
+
+## 12. How Tokenizers Learn Splitting Rules
+
+Tokenizer training is a **statistical algorithmic process**, not neural-network training.
+
+No neural-network-style operation is used: no gradients, no backpropagation, no learned neural weights.
+
+For example, BPE works roughly like this:
+
+1. Start with very small pieces, such as characters or bytes.
+2. Count which neighboring pieces appear together most often.
+3. Merge the most frequent pair into a new token.
+4. Repeat until the vocabulary reaches the chosen size.
+
+Example:
+
+```text
+l + o appears often -> merge into lo
+lo + w appears often -> merge into low
+i + n + g appears often -> eventually becomes ing
+```
+
+The result is a vocabulary of useful text pieces.
+
+This is "learning" only in a loose sense: the tokenizer extracts statistical patterns from text. It is not learning like the LLM itself learns.
+
+## 13. Main Tokenizer Algorithms
+
+| Algorithm | How it works |
+| --- | --- |
+| **Word-level** | Splits text by words. Simple, but bad with unknown words. |
+| **Character-level** | Splits text into characters. Can represent anything, but creates many tokens. |
+| **Byte-level** | Splits text into bytes. Can represent any text, but may be inefficient. |
+| **BPE** | Starts with small pieces and repeatedly merges frequent pairs. |
+| **Byte-level BPE** | BPE over bytes. Common in GPT-style tokenizers because it can handle almost any text. |
+| **WordPiece** | Similar to BPE, but chooses pieces using a likelihood-based scoring method. |
+| **Unigram** | Starts with many possible pieces, then removes less useful ones. Often used through SentencePiece. |
+
+Modern LLMs usually use BPE, byte-level BPE, SentencePiece, Unigram, or related variants.
+
+## 14. Are Tokenizer Algorithms Proprietary?
+
+The main tokenizer algorithms are mostly open and standard.
+
+| Algorithm or tool | Public status |
+| --- | --- |
+| **BPE** | Open, standard algorithm family. |
+| **Byte-level BPE** | Open, standard algorithm family. |
+| **WordPiece** | Publicly described and widely implemented. |
+| **Unigram** | Publicly described and widely implemented. |
+| **SentencePiece** | Open-source tokenizer framework. |
+| **OpenAI tiktoken** | Open-source tokenizer library for OpenAI model encodings. |
+
+But the exact tokenizer used by a company can still be proprietary or model-specific.
+
+A tokenizer includes more than the algorithm:
+
+| Part | Can differ by company/model? |
+| --- | --- |
+| Algorithm type | Yes, but usually based on known methods. |
+| Vocabulary | Yes. |
+| Merge rules | Yes. |
+| Special tokens | Yes. |
+| Chat formatting | Yes. |
+| Implementation details | Yes. |
+
+Short version:
+
+```text
+Algorithms are mostly open.
+Exact production tokenizers are often custom.
+```
+
+## 15. Why Tokenizers Matter
+
+Tokenizers affect how efficiently a model reads text.
+
+| Area | Why it matters |
+| --- | --- |
+| **Cost** | Many APIs charge by token count. |
+| **Context size** | More tokens means less text fits into the context window. |
+| **Languages** | Some tokenizers handle some languages more efficiently than others. |
+| **Code** | Code-friendly tokenizers can represent programming syntax more efficiently. |
+| **New words** | Good fallback behavior lets the model read unknown words. |
+| **Special tokens** | Chat models need markers for roles, tools, system messages, and boundaries. |
+
+The tokenizer is not intelligent by itself.
+
+```text
+Tokenizer = splitting and mapping layer.
+Model = learns and predicts patterns between token IDs.
+```
