@@ -53,3 +53,5 @@ Before answering, analyse only the current folder/file and its parent chain up t
 - `write to GitHub`
 
 If the user does not use one of these commands, treat the conversation as discussion only.
+
+For Markdown knowledge-base notes in branch ai-com
