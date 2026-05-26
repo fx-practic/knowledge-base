@@ -6,7 +6,7 @@ A unit of text that an LLM reads and predicts.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
 - [002. RAG](./002-rag.md)
 
 ---
@@ -17,7 +17,7 @@ The component that converts raw text into tokens and token IDs.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
 
 ---
 
@@ -27,7 +27,7 @@ The full set of tokens known by a tokenizer.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
 
 ---
 
@@ -37,7 +37,7 @@ The number of possible token IDs in a tokenizer vocabulary.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
 
 ---
 
@@ -47,7 +47,7 @@ The numeric identifier assigned to a token.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
 
 ---
 
@@ -57,7 +57,7 @@ A learned vector representation of a token ID.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
 
 ---
 
@@ -67,7 +67,7 @@ The maximum number of tokens a model can process in one context window.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
 
 ---
 
@@ -77,7 +77,7 @@ Byte Pair Encoding, a common tokenizer training method.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
 
 ---
 
@@ -87,7 +87,7 @@ A tokenizer framework often used for LLM tokenization.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
 
 ---
 
@@ -107,4 +107,4 @@ Additional training performed after the base model training.
 
 Used in:
 
-- [001. LLM General Index](./001-llm-general-index.md)
+- [001. Tokens](./001-tokens.md)
