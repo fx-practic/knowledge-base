@@ -9,6 +9,7 @@ This folder is the first topic branch for notes about how LLMs work.
 | Number | Page | Purpose |
 | --- | --- | --- |
 | **001-000** | [Glossary](./001-000-glossary.md) | Terms and two-way links. |
+| **001-001** | [Data Collection For LLM Training](./001-001-data-collection.md) | How internet, code, and other data are collected, filtered, and used for training corpora. |
 | **001-002** | [Tokens](./001-002-tokens.md) | Tokens, tokenizers, vocabulary, tokenization algorithms. |
 | **001-100** | [RAG](./001-100-rag.md) | Retrieval-augmented generation notes temporarily stored here. |
 
