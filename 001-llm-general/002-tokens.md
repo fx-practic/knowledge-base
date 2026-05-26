@@ -135,3 +135,103 @@ Model quality depends much more on architecture, training data, training compute
 So a model with a 200k vocabulary is not automatically twice as advanced as a model with a 100k vocabulary.
 
 The vocabulary is like the alphabet or dictionary available to the model. A larger dictionary can help, but it does not by itself make the writer smarter.
+
+---
+
+## 6. Tokenizer Algorithms And Typical Vocabulary Sizes
+
+Important correction:
+
+```text
+Algorithm does not define a fixed number of tokens.
+Tokenizer training defines the final vocabulary size.
+```
+
+For example, BPE can be trained with 8k tokens, 32k tokens, 50k tokens, 100k tokens, 200k tokens, or another target size. The algorithm explains **how tokens are selected**; the vocabulary size is a training/design choice.
+
+### Typical vocabulary sizes for English or English-heavy models
+
+| Algorithm / tokenizer style | Typical vocabulary size | English-language meaning | Notes |
+| --- | ---: | --- | --- |
+| **Word-level** | 50k-500k+ | One token often equals one whole word. | Needs very large vocabulary; unknown words become `<unk>`. |
+| **Character-level** | 100-300 | One token often equals one character. | Small vocabulary, but sequences become very long. |
+| **Byte-level** | 256 base tokens | One token can represent one byte. | Can represent any text, but raw byte tokenization is inefficient alone. |
+| **BPE** | 30k-200k+ | Common words or subwords become tokens. | Vocabulary size is chosen before or during training. |
+| **Byte-level BPE** | 50k-200k+ | Starts from 256 byte values, then learns common byte sequences. | Used by GPT-style tokenizers. GPT-2 used about 50k tokens; newer models may use much larger vocabularies. |
+| **WordPiece** | 30k-120k | Similar to BPE; common words/subwords become tokens. | Used by BERT-style models. |
+| **Unigram** | 8k-256k | Keeps the most useful probabilistic subword pieces. | Often used through SentencePiece. |
+| **SentencePiece** | 8k-256k+ | Framework, not one algorithm. | Can train BPE or Unigram directly from raw text. |
+
+### Public / partly public tokenizer examples
+
+| Tokenizer / family | Public status | Algorithm style | Approximate vocabulary size |
+| --- | --- | --- | ---: |
+| **OpenAI `r50k_base` / GPT-2 style** | Public via `tiktoken` | Byte-level BPE | About 50k |
+| **OpenAI `cl100k_base`** | Public via `tiktoken` | BPE-style OpenAI encoding | About 100k |
+| **OpenAI `o200k_base`** | Public via `tiktoken` | BPE-style OpenAI encoding | About 200k |
+| **Llama 3 / 3.1** | Tokenizer files public with model release | BPE-style tokenizer | 128k |
+| **Mistral Tekken** | Public documentation/tokenizer | BPE-style tokenizer | About 131k |
+| **Qwen** | Public tokenizer files | BPE-style tokenizer | About 151k plus control tokens |
+| **Gemma** | Public tokenizer files | SentencePiece-style tokenizer | About 256k |
+| **Anthropic Claude** | Not fully public | Not fully disclosed | Not fully public |
+| **Google Gemini** | Not fully public | Not fully disclosed | Not fully public |
+
+---
+
+## 7. How Tokenizers Deal With Foreign Languages
+
+A modern tokenizer vocabulary is **not English-only**.
+
+The vocabulary usually contains pieces from all languages present in the tokenizer training corpus:
+
+- English words and subwords.
+- Non-English words and subwords.
+- Punctuation.
+- Numbers.
+- Programming symbols.
+- Unicode characters or byte-level pieces.
+- Special control tokens.
+
+The model does not need a separate vocabulary for every language. It uses one shared vocabulary.
+
+Example:
+
+```text
+English text -> tokens from the shared vocabulary
+Ukrainian text -> tokens from the same shared vocabulary
+Japanese text -> tokens from the same shared vocabulary
+Code -> tokens from the same shared vocabulary
+```
+
+If a language was common in the tokenizer training data, it usually gets more efficient tokens. If a language was rare, its words may split into smaller pieces, so the same sentence may require more tokens.
+
+Practical consequence:
+
+| Language / text type | Tokenization quality |
+| --- | --- |
+| High-resource languages in training data | More efficient; fewer tokens per sentence. |
+| Low-resource languages | Less efficient; more token fragmentation. |
+| Languages without spaces, such as Chinese/Japanese | Need special handling; SentencePiece-style tokenization is often useful. |
+| Rare names, typos, new words | Usually split into smaller subword or byte pieces. |
+| Code | Better if tokenizer was trained with enough code data. |
+
+So a 200k vocabulary means:
+
+```text
+About 200,000 total token IDs for the whole tokenizer.
+Not 200,000 English tokens plus separate tokens for every other language.
+```
+
+The 200k tokens are shared across languages and text types.
+
+---
+
+## 8. Source Notes
+
+Useful public references:
+
+- OpenAI `tiktoken`: https://github.com/openai/tiktoken
+- OpenAI token counting cookbook: https://developers.openai.com/cookbook/examples/how_to_count_tokens_with_tiktoken
+- Hugging Face tokenizer algorithms: https://huggingface.co/docs/transformers/en/tokenizer_summary
+- Hugging Face Tokenizers components: https://huggingface.co/docs/tokenizers/components
+- SentencePiece: https://github.com/google/sentencepiece
