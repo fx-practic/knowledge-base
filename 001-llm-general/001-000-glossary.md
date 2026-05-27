@@ -1,4 +1,4 @@
-`Path: 001-llm-general\\001-000-glossary.md`
+`Path: 001-llm-general\001-000-glossary.md`
 
 # 001-000. Glossary
 
@@ -49,6 +49,7 @@ The maximum number of tokens a model can process in one context window.
 Used in:
 
 - [001-002. Tokens](./001-002-tokens.md)
+- [001-003. Model Files](./001-003-model-files.md)
 
 ---
 
@@ -59,6 +60,16 @@ A learned vector representation of a token ID.
 Used in:
 
 - [001-002. Tokens](./001-002-tokens.md)
+- [001-003. Model Files](./001-003-model-files.md)
+
+---
+
+## Feed-Forward Network
+
+A neural network block inside a transformer layer that transforms token vectors after attention.
+
+Used in:
+
 - [001-003. Model Files](./001-003-model-files.md)
 
 ---
@@ -74,9 +85,49 @@ Used in:
 
 ---
 
+## Generation Config
+
+Optional settings that define default text generation behavior, such as temperature, sampling, or maximum output length.
+
+Used in:
+
+- [001-003. Model Files](./001-003-model-files.md)
+
+---
+
 ## Model Architecture
 
 The structure of the model: number of layers, hidden size, attention heads, context length, vocabulary size, and other design parameters.
+
+Used in:
+
+- [001-003. Model Files](./001-003-model-files.md)
+
+---
+
+## Model Folder
+
+A directory containing the files needed to load a saved model, usually including config, tokenizer files, and trained weights.
+
+Used in:
+
+- [001-003. Model Files](./001-003-model-files.md)
+
+---
+
+## Output Layer
+
+The final model component that converts the last internal vector into scores for possible next tokens.
+
+Used in:
+
+- [001-003. Model Files](./001-003-model-files.md)
+
+---
+
+## Positional Encoding
+
+A system that represents token order so the model can distinguish different word positions in the context.
 
 Used in:
 
@@ -185,6 +236,7 @@ The number of possible token IDs in a tokenizer vocabulary.
 Used in:
 
 - [001-002. Tokens](./001-002-tokens.md)
+- [001-003. Model Files](./001-003-model-files.md)
 
 ---
 
