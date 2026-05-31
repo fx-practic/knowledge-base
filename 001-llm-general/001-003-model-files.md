@@ -195,7 +195,77 @@ For large models, the weight file can be split into shards, but this does not ch
 
 ---
 
-## 8. Key Distinction
+## 8. Approximate File Sizes
+
+In a saved LLM folder, almost all size is in the trained weights file.
+
+| File | Typical size | Notes |
+| --- | ---: | --- |
+| `config.json` | 10 KB - 300 KB | Model shape: layers, hidden size, attention heads, context length |
+| `tokenizer.json` | 1 MB - 30 MB | Tokenizer rules and often vocabulary |
+| `tokenizer_config.json` | 1 KB - 100 KB | Extra tokenizer settings |
+| `special_tokens_map.json` | 1 KB - 20 KB | Special tokens such as BOS, EOS, PAD, UNK |
+| `generation_config.json` | 1 KB - 50 KB | Optional default generation settings |
+| `model.safetensors` | GB - TB | Trained weights; usually more than 99.9% of total model size |
+
+For large models, `model.safetensors` is often split into several shard files. This is a storage detail. Conceptually, these shards still represent the same trained weights.
+
+---
+
+## 9. Why The Weights File Is So Large
+
+Approximate formula:
+
+```text
+model weight size = number of parameters x bytes per parameter
+```
+
+Typical precision sizes:
+
+| Precision | Bytes per parameter | Example: 1T parameters |
+| --- | ---: | ---: |
+| FP32 | 4 bytes | about 4 TB |
+| FP16 / BF16 | 2 bytes | about 2 TB |
+| FP8 / INT8 | 1 byte | about 1 TB |
+| 4-bit quantized | 0.5 byte | about 500 GB |
+
+So a 70B model saved in BF16 is approximately:
+
+```text
+70B x 2 bytes = 140 GB
+```
+
+This is only the weight size. Full training checkpoints can be much larger because training may also store optimizer state, gradients, and other temporary training data.
+
+---
+
+## 10. Approximate Current Model Sizes
+
+Exact sizes of closed frontier models are not public. For OpenAI GPT models and Anthropic Claude models, the public documentation gives model names, capabilities, context limits, pricing, and usage details, but not downloadable weight files or exact parameter counts.
+
+The table below gives approximate stored weight sizes by public or plausible model scale.
+
+| Model / scale | Public parameter information | Approximate BF16/FP16 stored weight size | Notes |
+| --- | ---: | ---: | --- |
+| Small open LLM | 8B | about 16 GB | Common local model scale |
+| Large open LLM | 70B | about 140 GB | Common high-quality open model scale |
+| Llama 3.1 405B | 405B | about 810 GB | Public open-weight model scale |
+| Qwen-style large MoE | about 235B total | about 470 GB | Total stored weights matter, not only active parameters |
+| DeepSeek-V3 | 671B total / 37B active | about 1.34 TB | MoE model: only part is active per token, but full weights must be stored |
+| Possible closed frontier dense model | unknown | hundreds of GB to several TB | GPT/Claude-class exact values are proprietary |
+| Possible closed frontier MoE model | unknown | 1 TB to 10+ TB total stored weights | Total stored weights may be much larger than active weights per token |
+
+Important distinction for MoE models:
+
+```text
+active parameters per token != total stored parameters
+```
+
+A MoE model may use only part of the model for each token, but the full saved model must still store all expert weights.
+
+---
+
+## 11. Key Distinction
 
 | Thing | Meaning |
 | --- | --- |
@@ -207,7 +277,7 @@ For large models, the weight file can be split into shards, but this does not ch
 
 ---
 
-## 9. Short Summary
+## 12. Short Summary
 
 | What | File |
 | --- | --- |
