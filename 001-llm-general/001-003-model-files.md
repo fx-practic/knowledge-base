@@ -75,25 +75,54 @@ Avoid saying **training tokens** when the meaning is **training samples made fro
 
 ---
 
-## 3. Model Parts And Corresponding Files
+## 3. Model Parts, Physical Form, And Corresponding Files
 
-| Model part / entity | Corresponding file | Meaning |
-| --- | --- | --- |
-| Model architecture | `config.json` | Defines layers, hidden size, attention heads, context length, vocabulary size |
-| Tokenizer rules | `tokenizer.json` | Defines how text is split into tokens |
-| Vocabulary | `tokenizer.json` or sometimes `vocab.json` | Token to token ID table |
-| Special tokens | `special_tokens_map.json` | BOS, EOS, PAD, UNK, and similar control tokens |
-| Tokenizer settings | `tokenizer_config.json` | Extra tokenizer parameters |
-| Embedding table | `model.safetensors` | Token ID to vector table |
-| Positional system | `config.json` and sometimes `model.safetensors` | Token order representation |
-| Transformer layers | `model.safetensors` | Main neural network weights |
-| Attention matrices | `model.safetensors` | Trained matrices used by attention calculations |
-| Feed-forward matrices | `model.safetensors` | Internal neural network matrices |
-| Normalization vectors | `model.safetensors` | LayerNorm or RMSNorm parameters |
-| Output prediction matrix | `model.safetensors` | Converts final hidden vector into token scores |
-| Generation defaults | `generation_config.json` | Optional default generation parameters |
+Let:
+
+| Symbol | Meaning |
+| --- | --- |
+| `V` | vocabulary size |
+| `d` | vector size / hidden size |
+| `L` | number of transformer layers |
+| `d_ff` | feed-forward internal size |
+| `C` | context size |
+
+Main model entities:
+
+| Model part / entity | Corresponding file | Physical form | Typical shape | Meaning |
+| --- | --- | --- | --- | --- |
+| Model architecture | `config.json` | configuration values | no trained array | Defines layers, hidden size, attention heads, context length, vocabulary size |
+| Tokenizer rules | `tokenizer.json` | tokenizer data / rules | not a neural matrix | Defines how text is split into tokens |
+| Vocabulary | `tokenizer.json` or sometimes `vocab.json` | lookup table | about `V` entries | Token to token ID table |
+| Special tokens | `special_tokens_map.json` | small mapping table | few entries | BOS, EOS, PAD, UNK, and similar control tokens |
+| Tokenizer settings | `tokenizer_config.json` | configuration values | no trained array | Extra tokenizer parameters |
+| Embedding table | `model.safetensors` | 2D matrix | `V x d` | Token ID to vector table |
+| Positional embeddings, if learned | `model.safetensors` | 2D matrix | `C x d` | Learned token order representation |
+| Formula-based positional system | `config.json` | formula/config | no learned matrix | Token order representation, for example RoPE-style position logic |
+| Attention Q weights | `model.safetensors` | 2D matrix | `d x d` | Creates query vectors for attention |
+| Attention K weights | `model.safetensors` | 2D matrix | `d x d` | Creates key vectors for attention |
+| Attention V weights | `model.safetensors` | 2D matrix | `d x d` | Creates value vectors for attention |
+| Attention output weights | `model.safetensors` | 2D matrix | `d x d` | Mixes attention output back into model vector space |
+| Feed-forward weights | `model.safetensors` | 2D matrices | `d x d_ff`, `d_ff x d` | Internal neural network transformations |
+| Normalization weights | `model.safetensors` | 1D vector | `d` | LayerNorm or RMSNorm scaling parameters |
+| Output prediction matrix | `model.safetensors` | 2D matrix | `d x V` or `V x d` | Converts final hidden vector into token scores |
+| Generation defaults | `generation_config.json` | configuration values | no trained array | Optional default generation parameters |
 
 Most internal model parts are **not separate files**. They are usually stored together inside the trained weights file.
+
+Embedding table shape:
+
+```text
+vocabulary_size x vector_size
+```
+
+Example:
+
+```text
+200,000 x 4,096
+```
+
+The embedding table has **one row per vocabulary token**. It does **not** have one row per training sample.
 
 ---
 
@@ -191,50 +220,7 @@ Each tensor inside the file has:
 
 ---
 
-## 6. Physical Form Of Main Trainable Arrays
-
-Let:
-
-| Symbol | Meaning |
-| --- | --- |
-| `V` | vocabulary size |
-| `d` | vector size / hidden size |
-| `L` | number of transformer layers |
-| `d_ff` | feed-forward internal size |
-| `C` | context size |
-
-Main trainable arrays:
-
-| Entity | Physical form | Typical shape | Stored in |
-| --- | --- | --- | --- |
-| Embedding table | 2D matrix | `V x d` | `model.safetensors` |
-| Attention Q weights | 2D matrix | `d x d` | `model.safetensors` |
-| Attention K weights | 2D matrix | `d x d` | `model.safetensors` |
-| Attention V weights | 2D matrix | `d x d` | `model.safetensors` |
-| Attention output weights | 2D matrix | `d x d` | `model.safetensors` |
-| Feed-forward weights | 2D matrices | `d x d_ff`, `d_ff x d` | `model.safetensors` |
-| Normalization weights | 1D vector | `d` | `model.safetensors` |
-| Output prediction layer | 2D matrix | `d x V` or `V x d` | `model.safetensors` |
-| Positional embeddings | 2D matrix, if learned | `C x d` | `model.safetensors` |
-| Formula-based positional system | not usually learned | stored as config/formula | `config.json` |
-
-Embedding table shape:
-
-```text
-vocabulary_size x vector_size
-```
-
-Example:
-
-```text
-200,000 x 4,096
-```
-
-The embedding table has **one row per vocabulary token**. It does **not** have one row per training sample.
-
----
-
-## 7. Attention Weights Are Not Attention Scores
+## 6. Attention Weights Are Not Attention Scores
 
 Important distinction:
 
@@ -264,7 +250,7 @@ So attention weights are **trained matrices**, not a pre-made table of word rela
 
 ---
 
-## 8. Example Mapping Inside `model.safetensors`
+## 7. Example Mapping Inside `model.safetensors`
 
 | Model part | Tensor name example | Stored in |
 | --- | --- | --- |
@@ -280,7 +266,7 @@ One file can store many named numeric tables.
 
 ---
 
-## 9. How Config And Weights Work Together
+## 8. How Config And Weights Work Together
 
 `config.json` says:
 
@@ -311,7 +297,7 @@ config + tokenizer + trained arrays
 
 ---
 
-## 10. Minimal Practical Model Folder
+## 9. Minimal Practical Model Folder
 
 Example:
 
@@ -334,7 +320,7 @@ For large models, the weight file can be split into shards, but this does not ch
 
 ---
 
-## 11. Approximate File Sizes
+## 10. Approximate File Sizes
 
 In a saved model folder, almost all size is in the trained weights file.
 
@@ -351,7 +337,7 @@ For large models, `model.safetensors` is often split into several shard files. T
 
 ---
 
-## 12. What Parameters Are
+## 11. What Parameters Are
 
 Parameters are **not tokens** and **not training samples**.
 
@@ -375,7 +361,7 @@ During the training process, these numbers are changed again and again until the
 
 ---
 
-## 13. Why The Weights File Is So Large
+## 12. Why The Weights File Is So Large
 
 Approximate formula:
 
@@ -402,7 +388,7 @@ This is only the weight size. Full training checkpoints can be much larger becau
 
 ---
 
-## 14. Approximate Current Model Sizes
+## 13. Approximate Current Model Sizes
 
 Exact sizes of closed frontier models are not public.
 
@@ -428,7 +414,7 @@ A MoE model may use only part of the model for each token, but the full saved mo
 
 ---
 
-## 15. Key Distinction
+## 14. Key Distinction
 
 | Thing | Meaning |
 | --- | --- |
@@ -445,7 +431,7 @@ A MoE model may use only part of the model for each token, but the full saved mo
 
 ---
 
-## 16. Short Summary
+## 15. Short Summary
 
 | What | File |
 | --- | --- |
