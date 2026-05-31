@@ -95,6 +95,26 @@ Used in:
 
 ---
 
+## Input Sequence
+
+A sequence of token IDs provided to the model as one training input.
+
+Used in:
+
+- [001-004. ML Training vs LLM Training Terms](./001-004-ml-training-vs-llm-training-terms.md)
+
+---
+
+## Label
+
+The correct answer used for training. In LLM training, this is usually the next token ID or shifted target sequence.
+
+Used in:
+
+- [001-004. ML Training vs LLM Training Terms](./001-004-ml-training-vs-llm-training-terms.md)
+
+---
+
 ## Model Architecture
 
 The structure of the model: number of layers, hidden size, attention heads, context length, vocabulary size, and other design parameters.
@@ -135,6 +155,16 @@ Used in:
 
 ---
 
+## Prediction
+
+The model output before comparison with the target or label.
+
+Used in:
+
+- [001-004. ML Training vs LLM Training Terms](./001-004-ml-training-vs-llm-training-terms.md)
+
+---
+
 ## RAG
 
 Retrieval-Augmented Generation.
@@ -165,6 +195,16 @@ Used in:
 
 ---
 
+## Target
+
+The expected correct output for a training sample. In LLM training, it is usually the next token ID or a shifted sequence of next token IDs.
+
+Used in:
+
+- [001-004. ML Training vs LLM Training Terms](./001-004-ml-training-vs-llm-training-terms.md)
+
+---
+
 ## Tensor
 
 An array of numbers used to store model parameters, such as vectors, matrices, or higher-dimensional blocks.
@@ -182,6 +222,7 @@ A unit of text that an LLM reads and predicts.
 Used in:
 
 - [001-002. Tokens](./001-002-tokens.md)
+- [001-004. ML Training vs LLM Training Terms](./001-004-ml-training-vs-llm-training-terms.md)
 - [001-100. RAG](./001-100-rag.md)
 
 ---
@@ -205,6 +246,16 @@ Used in:
 
 - [001-002. Tokens](./001-002-tokens.md)
 - [001-003. Model Files](./001-003-model-files.md)
+
+---
+
+## Training Sample
+
+An input example used during training. In LLM training, it is usually a token sequence with a corresponding next-token target sequence.
+
+Used in:
+
+- [001-004. ML Training vs LLM Training Terms](./001-004-ml-training-vs-llm-training-terms.md)
 
 ---
 
