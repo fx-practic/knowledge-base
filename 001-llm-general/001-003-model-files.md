@@ -135,8 +135,6 @@ Each tensor inside the file has:
 | Normalization weights | `layers.0.input_layernorm.weight` | `model.safetensors` |
 | Output layer | `lm_head.weight` | `model.safetensors` |
 
-This is similar to one Excel workbook containing many sheets.
-
 One file can store many named numeric tables.
 
 ---
@@ -212,7 +210,31 @@ For large models, `model.safetensors` is often split into several shard files. T
 
 ---
 
-## 9. Why The Weights File Is So Large
+## 9. What Parameters Are
+
+Parameters are **not tokens** and **not training samples**.
+
+Simple definition:
+
+```text
+Parameter = one learned number inside the neural network.
+```
+
+Examples:
+
+```text
+0.1847
+1.3920
+0.0063
+```
+
+An LLM contains billions of such numbers.
+
+During training, these numbers are changed again and again until the model becomes good at predicting the next token.
+
+---
+
+## 10. Why The Weights File Is So Large
 
 Approximate formula:
 
@@ -239,7 +261,7 @@ This is only the weight size. Full training checkpoints can be much larger becau
 
 ---
 
-## 10. Approximate Current Model Sizes
+## 11. Approximate Current Model Sizes
 
 Exact sizes of closed frontier models are not public. For OpenAI GPT models and Anthropic Claude models, the public documentation gives model names, capabilities, context limits, pricing, and usage details, but not downloadable weight files or exact parameter counts.
 
@@ -265,7 +287,7 @@ A MoE model may use only part of the model for each token, but the full saved mo
 
 ---
 
-## 11. Key Distinction
+## 12. Key Distinction
 
 | Thing | Meaning |
 | --- | --- |
@@ -277,7 +299,7 @@ A MoE model may use only part of the model for each token, but the full saved mo
 
 ---
 
-## 12. Short Summary
+## 13. Short Summary
 
 | What | File |
 | --- | --- |
