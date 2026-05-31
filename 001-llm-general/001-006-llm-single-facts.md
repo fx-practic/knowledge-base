@@ -11,15 +11,5 @@ Related pages:
 
 | Number | Fact |
 | --- | --- |
-| F001 | 4096 is usually called hidden size, model dimension, or embedding dimension. |
-| F002 | Hidden size means the length of one internal token vector. |
-| F003 | If hidden size is 4096, one internal token vector contains 4096 numbers. |
-| F004 | The common symbol for hidden size is d_model or d. |
-| F005 | A feed-forward block usually maps d to d_ff and then back to d. |
-| F006 | d_ff is the larger temporary internal size inside the feed-forward block. |
-| F007 | The output of a feed-forward block has size d. |
 | F008 | The output of a transformer layer has size d for each token. |
-| F009 | The final prediction output is not one number. |
-| F010 | The final prediction output has one score for every token in the vocabulary. |
-| F011 | If vocabulary size is V, the final prediction output size is V. |
-| F012 | Do not confuse internal vector size d with final vocabulary output size V. |
+| F009 | RAG means Retrieval-Augmented Generation: the system searches external documents and puts relevant passages into the prompt, so the model can answer using that context without permanently changing its weights. |
