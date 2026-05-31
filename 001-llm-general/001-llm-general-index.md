@@ -12,6 +12,7 @@ This folder is the first topic branch for notes about how LLMs work.
 | **001-001** | [Data Collection For LLM Training](./001-001-data-collection.md) | How internet, code, and other data are collected, filtered, and used for training corpora. |
 | **001-002** | [Tokens](./001-002-tokens.md) | Tokens, tokenizers, vocabulary, tokenization algorithms. |
 | **001-003** | [What An LLM Model Is Built From And What Files Store It](./001-003-model-files.md) | What physical parts a saved LLM contains and which files store them. |
+| **001-004** | [ML Training vs LLM Training Terms](./001-004-ml-training-vs-llm-training-terms.md) | Maps classic ML terms such as sample, label, target, and prediction to LLM training terms. |
 | **001-100** | [RAG](./001-100-rag.md) | Retrieval-augmented generation notes temporarily stored here. |
 
 ## Numbering rule
