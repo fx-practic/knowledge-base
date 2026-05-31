@@ -81,7 +81,6 @@ Additional training performed after the base model training.
 Used in:
 
 - [001-002. Tokens](./001-002-tokens.md)
-- [001-100. RAG](./001-100-rag.md)
 
 ---
 
@@ -171,7 +170,7 @@ Retrieval-Augmented Generation.
 
 Used in:
 
-- [001-100. RAG](./001-100-rag.md)
+- [001-006. LLM Single Facts](./001-006-llm-single-facts.md)
 
 ---
 
@@ -223,7 +222,6 @@ Used in:
 
 - [001-002. Tokens](./001-002-tokens.md)
 - [001-004. ML Training vs LLM Training Terms](./001-004-ml-training-vs-llm-training-terms.md)
-- [001-100. RAG](./001-100-rag.md)
 
 ---
 
