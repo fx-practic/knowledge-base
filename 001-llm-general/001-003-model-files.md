@@ -41,10 +41,10 @@ That folder mainly contains:
 | Tokenizer and vocabulary | `tokenizer.json` |
 | Tokenizer settings | `tokenizer_config.json` |
 | Special tokens | `special_tokens_map.json` |
-| Trained weights | `model.safetensors` |
+| Trained numeric arrays | `model.safetensors` |
 | Optional generation defaults | `generation_config.json` |
 
-For large models, `model.safetensors` can be split into several shard files. Conceptually, it is still the same group of trained weights.
+For large models, `model.safetensors` can be split into several shard files. Conceptually, it is still the same group of trained numeric arrays.
 
 ---
 
@@ -55,10 +55,23 @@ For large models, `model.safetensors` can be split into several shard files. Con
 | Collect text | Text corpus |
 | Build tokenizer | Tokenizer files and vocabulary |
 | Define model architecture | Model config |
-| Train model, including initial random weights | Trained weights |
+| Create training samples from tokenized text | Input sequences and target sequences |
+| Train the trainable arrays, including initial random values | Trained numeric arrays |
 | Save final model | Model folder / checkpoint |
 
 This page is about **creation**, not usage.
+
+Important terminology:
+
+| Term | Meaning |
+| --- | --- |
+| Token | piece of text |
+| Training sample | input example made from a sequence of token IDs |
+| Target / label | correct next token or correct next-token sequence |
+| Parameter | one learned number inside the neural network |
+| Trainable array | matrix, vector, or tensor containing parameters that are changed during training |
+
+Avoid saying **training tokens** when the meaning is **training samples made from token sequences**.
 
 ---
 
@@ -74,17 +87,72 @@ This page is about **creation**, not usage.
 | Embedding table | `model.safetensors` | Token ID to vector table |
 | Positional system | `config.json` and sometimes `model.safetensors` | Token order representation |
 | Transformer layers | `model.safetensors` | Main neural network weights |
-| Attention weights | `model.safetensors` | Matrices used by attention |
-| Feed-forward weights | `model.safetensors` | Internal neural network matrices |
-| Normalization weights | `model.safetensors` | LayerNorm or RMSNorm parameters |
-| Output prediction layer | `model.safetensors` | Converts final hidden vector into token scores |
+| Attention matrices | `model.safetensors` | Trained matrices used by attention calculations |
+| Feed-forward matrices | `model.safetensors` | Internal neural network matrices |
+| Normalization vectors | `model.safetensors` | LayerNorm or RMSNorm parameters |
+| Output prediction matrix | `model.safetensors` | Converts final hidden vector into token scores |
 | Generation defaults | `generation_config.json` | Optional default generation parameters |
 
 Most internal model parts are **not separate files**. They are usually stored together inside the trained weights file.
 
 ---
 
-## 4. Why One `model.safetensors` File Can Store Many Parts
+## 4. Training Samples, Targets, And Joint Training
+
+In classic machine learning, training data often has:
+
+| Input sample | Target / label |
+| --- | --- |
+| features | correct result |
+
+In text model creation, the sample is usually made from token IDs.
+
+Example:
+
+```text
+input sequence:  token_1, token_2, token_3, ... token_N
+target sequence: token_2, token_3, token_4, ... token_N+1
+```
+
+The model receives the **input sequence** and tries to predict the **target sequence**.
+
+Then one error signal is calculated.
+
+That same error signal updates many trainable arrays together:
+
+- embedding table
+- attention matrices
+- feed-forward matrices
+- normalization vectors
+- output prediction matrix
+
+This does **not** mean these are separate models.
+
+They are different parameter groups inside one connected neural network.
+
+The forward calculation is sequential:
+
+```text
+token IDs
+-> embedding table
+-> positional information
+-> transformer layers
+-> output prediction matrix
+-> predicted next-token scores
+```
+
+The parameter update is joint:
+
+```text
+one batch
+one prediction task
+one error signal
+many trainable arrays updated
+```
+
+---
+
+## 5. Why One `model.safetensors` File Can Store Many Parts
 
 `model.safetensors` is a **container file**.
 
@@ -119,11 +187,84 @@ Each tensor inside the file has:
 | Name | Tensor name, for example `layers.0.self_attn.q_proj.weight` |
 | Shape | Dimensions, for example `4096 x 4096` |
 | Data type | For example `float16` or `bfloat16` |
-| Raw numbers | Actual trained weight values |
+| Raw numbers | Actual trained parameter values |
 
 ---
 
-## 5. Example Mapping Inside `model.safetensors`
+## 6. Physical Form Of Main Trainable Arrays
+
+Let:
+
+| Symbol | Meaning |
+| --- | --- |
+| `V` | vocabulary size |
+| `d` | vector size / hidden size |
+| `L` | number of transformer layers |
+| `d_ff` | feed-forward internal size |
+| `C` | context size |
+
+Main trainable arrays:
+
+| Entity | Physical form | Typical shape | Stored in |
+| --- | --- | --- | --- |
+| Embedding table | 2D matrix | `V x d` | `model.safetensors` |
+| Attention Q weights | 2D matrix | `d x d` | `model.safetensors` |
+| Attention K weights | 2D matrix | `d x d` | `model.safetensors` |
+| Attention V weights | 2D matrix | `d x d` | `model.safetensors` |
+| Attention output weights | 2D matrix | `d x d` | `model.safetensors` |
+| Feed-forward weights | 2D matrices | `d x d_ff`, `d_ff x d` | `model.safetensors` |
+| Normalization weights | 1D vector | `d` | `model.safetensors` |
+| Output prediction layer | 2D matrix | `d x V` or `V x d` | `model.safetensors` |
+| Positional embeddings | 2D matrix, if learned | `C x d` | `model.safetensors` |
+| Formula-based positional system | not usually learned | stored as config/formula | `config.json` |
+
+Embedding table shape:
+
+```text
+vocabulary_size x vector_size
+```
+
+Example:
+
+```text
+200,000 x 4,096
+```
+
+The embedding table has **one row per vocabulary token**. It does **not** have one row per training sample.
+
+---
+
+## 7. Attention Weights Are Not Attention Scores
+
+Important distinction:
+
+| Term | Meaning |
+| --- | --- |
+| Attention matrices / attention weights | trained parameters stored in `model.safetensors` |
+| Attention scores | temporary values calculated during one forward pass |
+
+The stored attention parameters are matrices like:
+
+```text
+Wq
+Wk
+Wv
+Wo
+```
+
+They create temporary vectors:
+
+```text
+Q = input x Wq
+K = input x Wk
+V = input x Wv
+```
+
+So attention weights are **trained matrices**, not a pre-made table of word relationships.
+
+---
+
+## 8. Example Mapping Inside `model.safetensors`
 
 | Model part | Tensor name example | Stored in |
 | --- | --- | --- |
@@ -139,7 +280,7 @@ One file can store many named numeric tables.
 
 ---
 
-## 6. How Config And Weights Work Together
+## 9. How Config And Weights Work Together
 
 `config.json` says:
 
@@ -162,15 +303,15 @@ read config.json
 -> put trained tensors into the right places
 ```
 
-So the final LLM is mainly:
+So the final saved model is mainly:
 
 ```text
-config + tokenizer + trained weights
+config + tokenizer + trained arrays
 ```
 
 ---
 
-## 7. Minimal Practical Model Folder
+## 10. Minimal Practical Model Folder
 
 Example:
 
@@ -193,9 +334,9 @@ For large models, the weight file can be split into shards, but this does not ch
 
 ---
 
-## 8. Approximate File Sizes
+## 11. Approximate File Sizes
 
-In a saved LLM folder, almost all size is in the trained weights file.
+In a saved model folder, almost all size is in the trained weights file.
 
 | File | Typical size | Notes |
 | --- | ---: | --- |
@@ -204,13 +345,13 @@ In a saved LLM folder, almost all size is in the trained weights file.
 | `tokenizer_config.json` | 1 KB - 100 KB | Extra tokenizer settings |
 | `special_tokens_map.json` | 1 KB - 20 KB | Special tokens such as BOS, EOS, PAD, UNK |
 | `generation_config.json` | 1 KB - 50 KB | Optional default generation settings |
-| `model.safetensors` | GB - TB | Trained weights; usually more than 99.9% of total model size |
+| `model.safetensors` | GB - TB | Trained arrays; usually more than 99.9% of total model size |
 
-For large models, `model.safetensors` is often split into several shard files. This is a storage detail. Conceptually, these shards still represent the same trained weights.
+For large models, `model.safetensors` is often split into several shard files. This is a storage detail.
 
 ---
 
-## 9. What Parameters Are
+## 12. What Parameters Are
 
 Parameters are **not tokens** and **not training samples**.
 
@@ -224,17 +365,17 @@ Examples:
 
 ```text
 0.1847
-1.3920
+-1.3920
 0.0063
 ```
 
-An LLM contains billions of such numbers.
+A model contains billions of such numbers.
 
-During training, these numbers are changed again and again until the model becomes good at predicting the next token.
+During the training process, these numbers are changed again and again until the model becomes good at predicting the next token.
 
 ---
 
-## 10. Why The Weights File Is So Large
+## 13. Why The Weights File Is So Large
 
 Approximate formula:
 
@@ -261,9 +402,9 @@ This is only the weight size. Full training checkpoints can be much larger becau
 
 ---
 
-## 11. Approximate Current Model Sizes
+## 14. Approximate Current Model Sizes
 
-Exact sizes of closed frontier models are not public. For OpenAI GPT models and Anthropic Claude models, the public documentation gives model names, capabilities, context limits, pricing, and usage details, but not downloadable weight files or exact parameter counts.
+Exact sizes of closed frontier models are not public.
 
 The table below gives approximate stored weight sizes by public or plausible model scale.
 
@@ -274,7 +415,7 @@ The table below gives approximate stored weight sizes by public or plausible mod
 | Llama 3.1 405B | 405B | about 810 GB | Public open-weight model scale |
 | Qwen-style large MoE | about 235B total | about 470 GB | Total stored weights matter, not only active parameters |
 | DeepSeek-V3 | 671B total / 37B active | about 1.34 TB | MoE model: only part is active per token, but full weights must be stored |
-| Possible closed frontier dense model | unknown | hundreds of GB to several TB | GPT/Claude-class exact values are proprietary |
+| Possible closed frontier dense model | unknown | hundreds of GB to several TB | Exact values are proprietary |
 | Possible closed frontier MoE model | unknown | 1 TB to 10+ TB total stored weights | Total stored weights may be much larger than active weights per token |
 
 Important distinction for MoE models:
@@ -287,27 +428,34 @@ A MoE model may use only part of the model for each token, but the full saved mo
 
 ---
 
-## 12. Key Distinction
+## 15. Key Distinction
 
 | Thing | Meaning |
 | --- | --- |
-| Architecture | Empty structure of the model |
-| Weights | Learned numbers inside that structure |
-| Tokenizer | Converts text to tokens and back |
-| Config | Tells software how to rebuild the structure |
-| Checkpoint | Saved trained model state |
+| Token | piece of text |
+| Training sample | input example made from a token sequence |
+| Target / label | correct next token or next-token sequence |
+| Parameter | one learned number inside the neural network |
+| Tensor | named array of numbers: vector, matrix, or higher-dimensional block |
+| Architecture | empty structure of the model |
+| Weights | learned numbers inside that structure |
+| Tokenizer | converts text to token IDs and back |
+| Config | tells software how to rebuild the structure |
+| Checkpoint | saved model state |
 
 ---
 
-## 13. Short Summary
+## 16. Short Summary
 
 | What | File |
 | --- | --- |
 | Structure | `config.json` |
 | Language/token system | `tokenizer.json` and tokenizer config files |
-| Learned model itself | `model.safetensors` |
+| Learned numeric arrays | `model.safetensors` |
 | Optional generation settings | `generation_config.json` |
 
-The final LLM is not one simple file and not a database.
+The final saved model is not one simple file and not a database.
 
-It is mainly **configuration + tokenizer + trained weights**.
+It is mainly **configuration + tokenizer + trained numeric arrays**.
+
+The trainable arrays are physically different tensors, but they are not separate independent models. They are connected parts of one neural network and are updated together from the same prediction error.
