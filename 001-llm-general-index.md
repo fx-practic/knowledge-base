@@ -15,6 +15,8 @@ This repository is the knowledge base root.
 | **001-004** | [ML Training vs LLM Training Terms](./001-004-ml-training-vs-llm-training-terms.md) | Maps classic ML terms such as sample, label, target, and prediction to LLM training terms. |
 | **001-005** | [Training](./001-005.md) | Forward calculation flow and model training notes. |
 | **001-006** | [LLM Single Facts](./001-006-llm-single-facts.md) | Short independent facts about LLM internals. |
+| **001-007** | [Training Tables in LLMs](./001-007-training-tables-in-llms.md) | How trainable matrices, gradients, and backpropagation work together during LLM training. |
+| **001-008** | [History Roadmap: How We Reached Modern LLMs](./001-008-history-road-to-llms.md) | Timeline of inventions, problems, solutions, key papers, and side branches leading to modern LLM systems. |
 
 ## Numbering rule
 
