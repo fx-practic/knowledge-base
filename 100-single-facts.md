@@ -1,11 +1,11 @@
-Path: 001-006-llm-single-facts.md
+Path: 100-single-facts.md
 
-# 001-006. LLM Single Facts
+# 100. LLM Single Facts
 
 Related pages:
 
-- [001. LLM General Index](./001-llm-general-index.md)
-- [001-003. What An LLM Model Is Built From And What Files Store It](./001-003-model-files.md)
+- [001. LLM General Index](./001-general-index.md)
+- [005. What An LLM Model Is Built From And What Files Store It](./005-model-files.md)
 
 ## Facts
 
@@ -15,6 +15,7 @@ Related pages:
 | F009 | RAG means Retrieval-Augmented Generation: the system searches external documents and puts relevant passages into the prompt, so the model can answer using that context without permanently changing its weights. |
 | F010 | [Embedding vector dimensions contain coordinates, not probabilities.](#f010-embedding-vector-coordinate-values) Their expected numerical scale depends on the model and any normalization applied. |
 | F011 | [An embedding table is a trained lookup table, not a neural network by itself.](#f011-an-embedding-table-is-not-a-neural-network) |
+| F012 | [Attention is an operation, not just a table.](#f012-attention-is-an-operation-not-just-a-table) It computes how strongly token positions should influence one another. |
 
 ## F010. Embedding Vector Coordinate Values
 
@@ -69,3 +70,51 @@ Sources:
 - [Deerwester et al., 1990: *Indexing by Latent Semantic Analysis*](https://doi.org/10.1002/(SICI)1097-4571(199009)41:6%3C391::AID-ASI1%3E3.0.CO;2-9)
 - [Bengio, Ducharme, Vincent, and Jauvin, 2003: *A Neural Probabilistic Language Model*](https://www.jmlr.org/papers/v3/bengio03a.html)
 - [Bengio, Ducharme, and Vincent, NIPS 2000 version](https://papers.nips.cc/paper/1839-a-neural-probabilistic-language-model)
+
+## F012. Attention Is an Operation, Not Just a Table
+
+It is tempting to imagine an LLM as a simple chain:
+
+```text
+vector
+-> table 1
+-> table 2
+-> table 3
+-> output token
+```
+
+From this picture, a natural question appears: why do we call one of those
+tables "attention"? Why not call it multiplication or any other arbitrary
+name?
+
+The answer is that attention is not the name of one arbitrary "second table."
+It is the name of a specific computation. In self-attention, several learned
+matrices create a query, key, and value vector for each token:
+
+```text
+Q = X * W_Q
+K = X * W_K
+V = X * W_V
+```
+
+The model then compares queries with keys, converts the comparison scores into
+weights, and uses those weights to mix value vectors:
+
+```text
+Attention(Q, K, V) = softmax(Q * K^T / sqrt(d_k)) * V
+```
+
+For each token position, the resulting weights describe how strongly other
+token positions should influence the new representation. For example, a token
+may receive more information from a nearby adjective, a referenced noun, or an
+earlier part of the sentence.
+
+This is why the operation is called **attention**: it determines where the
+model should draw information from at that moment. The learned matrices
+`W_Q`, `W_K`, and `W_V` participate in the operation, but none of those
+matrices alone is "the attention table."
+
+The architecture was designed by researchers. Training does not independently
+decide which matrix should become attention. Instead, researchers define the
+attention computation, and training adjusts its matrices so that the complete
+model predicts tokens more accurately.

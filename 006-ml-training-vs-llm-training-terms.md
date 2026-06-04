@@ -1,22 +1,22 @@
-`Path: 001-004-ml-training-vs-llm-training-terms.md`
+Path: 006-ml-training-vs-llm-training-terms.md
 
-# 001-004. ML Training vs LLM Training Terms
+# 006. ML Training vs LLM Training Terms
 
 Related pages:
 
-- [001. LLM General Index](./001-llm-general-index.md)
-- [001-000. Glossary](./001-000-glossary.md)
-- [001-002. Tokens](./001-002-tokens.md)
-- [001-003. Model Files](./001-003-model-files.md)
+- [001. LLM General Index](./001-general-index.md)
+- [002. Glossary](./002-glossary.md)
+- [004. Tokens](./004-tokens.md)
+- [005. Model Files](./005-model-files.md)
 
 Related glossary terms:
 
-- [Input Sequence](./001-000-glossary.md#input-sequence)
-- [Label](./001-000-glossary.md#label)
-- [Prediction](./001-000-glossary.md#prediction)
-- [Target](./001-000-glossary.md#target)
-- [Token](./001-000-glossary.md#token)
-- [Training Sample](./001-000-glossary.md#training-sample)
+- [Input Sequence](./002-glossary.md#input-sequence)
+- [Label](./002-glossary.md#label)
+- [Prediction](./002-glossary.md#prediction)
+- [Target](./002-glossary.md#target)
+- [Token](./002-glossary.md#token)
+- [Training Sample](./002-glossary.md#training-sample)
 
 ---
 

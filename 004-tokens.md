@@ -1,10 +1,10 @@
-`Path: 001-002-tokens.md`
+Path: 004-tokens.md
 
-# 001-002. Tokens
+# 004. Tokens
 
 Related pages:
 
-- [001-000. Glossary](./001-000-glossary.md)
+- [002. Glossary](./002-glossary.md)
 
 ---
 
@@ -12,11 +12,11 @@ Related pages:
 
 Related glossary terms:
 
-- [Token](./001-000-glossary.md#token)
-- [Tokenizer](./001-000-glossary.md#tokenizer)
-- [Vocabulary](./001-000-glossary.md#vocabulary)
-- [BPE](./001-000-glossary.md#bpe)
-- [SentencePiece](./001-000-glossary.md#sentencepiece)
+- [Token](./002-glossary.md#token)
+- [Tokenizer](./002-glossary.md#tokenizer)
+- [Vocabulary](./002-glossary.md#vocabulary)
+- [BPE](./002-glossary.md#bpe)
+- [SentencePiece](./002-glossary.md#sentencepiece)
 
 Tokens are created before model training by training a tokenizer on a large text corpus.
 
@@ -38,9 +38,9 @@ A common word may be one token. A rare word, new word, typo, or technical term m
 
 Related glossary terms:
 
-- [Vocabulary](./001-000-glossary.md#vocabulary)
-- [Vocabulary Size](./001-000-glossary.md#vocabulary-size)
-- [Token ID](./001-000-glossary.md#token-id)
+- [Vocabulary](./002-glossary.md#vocabulary)
+- [Vocabulary Size](./002-glossary.md#vocabulary-size)
+- [Token ID](./002-glossary.md#token-id)
 
 The correct general term is **vocabulary**.
 
@@ -58,9 +58,9 @@ In LLM engineering, saying "this model has a 128k vocabulary" usually means the 
 
 Related glossary terms:
 
-- [Token](./001-000-glossary.md#token)
-- [Tokenizer](./001-000-glossary.md#tokenizer)
-- [Vocabulary](./001-000-glossary.md#vocabulary)
+- [Token](./002-glossary.md#token)
+- [Tokenizer](./002-glossary.md#tokenizer)
+- [Vocabulary](./002-glossary.md#vocabulary)
 
 Technically, both approaches are possible.
 
@@ -82,9 +82,9 @@ So the practical pattern is:
 
 Related glossary terms:
 
-- [Vocabulary Size](./001-000-glossary.md#vocabulary-size)
-- [Token ID](./001-000-glossary.md#token-id)
-- [Context Size](./001-000-glossary.md#context-size)
+- [Vocabulary Size](./002-glossary.md#vocabulary-size)
+- [Token ID](./002-glossary.md#token-id)
+- [Context Size](./002-glossary.md#context-size)
 
 Vocabulary size means how many possible token IDs the model can represent. This is different from context size, which means how many tokens the model can read in one prompt.
 
@@ -110,8 +110,8 @@ These numbers are approximate because some companies publish exact tokenizer fil
 
 Related glossary terms:
 
-- [Vocabulary](./001-000-glossary.md#vocabulary)
-- [Embedding](./001-000-glossary.md#embedding)
+- [Vocabulary](./002-glossary.md#vocabulary)
+- [Embedding](./002-glossary.md#embedding)
 
 Not automatically.
 

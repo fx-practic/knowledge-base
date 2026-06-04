@@ -1,31 +1,31 @@
-`Path: 001-003-model-files.md`
+Path: 005-model-files.md
 
-# 001-003. What An LLM Model Is Built From And What Files Store It
+# 005. What An LLM Model Is Built From And What Files Store It
 
 Related pages:
 
-- [001. LLM General Index](./001-llm-general-index.md)
-- [001-000. Glossary](./001-000-glossary.md)
-- [001-002. Tokens](./001-002-tokens.md)
+- [001. LLM General Index](./001-general-index.md)
+- [002. Glossary](./002-glossary.md)
+- [004. Tokens](./004-tokens.md)
 
 Related glossary terms:
 
-- [Attention](./001-000-glossary.md#attention)
-- [Checkpoint](./001-000-glossary.md#checkpoint)
-- [Config](./001-000-glossary.md#config)
-- [Embedding](./001-000-glossary.md#embedding)
-- [Feed-Forward Network](./001-000-glossary.md#feed-forward-network)
-- [Generation Config](./001-000-glossary.md#generation-config)
-- [Model Architecture](./001-000-glossary.md#model-architecture)
-- [Model Folder](./001-000-glossary.md#model-folder)
-- [Output Layer](./001-000-glossary.md#output-layer)
-- [Positional Encoding](./001-000-glossary.md#positional-encoding)
-- [Safetensors](./001-000-glossary.md#safetensors)
-- [Tensor](./001-000-glossary.md#tensor)
-- [Tokenizer](./001-000-glossary.md#tokenizer)
-- [Transformer Layer](./001-000-glossary.md#transformer-layer)
-- [Vocabulary](./001-000-glossary.md#vocabulary)
-- [Weights](./001-000-glossary.md#weights)
+- [Attention](./002-glossary.md#attention)
+- [Checkpoint](./002-glossary.md#checkpoint)
+- [Config](./002-glossary.md#config)
+- [Embedding](./002-glossary.md#embedding)
+- [Feed-Forward Network](./002-glossary.md#feed-forward-network)
+- [Generation Config](./002-glossary.md#generation-config)
+- [Model Architecture](./002-glossary.md#model-architecture)
+- [Model Folder](./002-glossary.md#model-folder)
+- [Output Layer](./002-glossary.md#output-layer)
+- [Positional Encoding](./002-glossary.md#positional-encoding)
+- [Safetensors](./002-glossary.md#safetensors)
+- [Tensor](./002-glossary.md#tensor)
+- [Tokenizer](./002-glossary.md#tokenizer)
+- [Transformer Layer](./002-glossary.md#transformer-layer)
+- [Vocabulary](./002-glossary.md#vocabulary)
+- [Weights](./002-glossary.md#weights)
 
 ---
 

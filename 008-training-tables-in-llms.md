@@ -1,6 +1,6 @@
-Path: 001-007-training-tables-in-llms.md
+Path: 008-training-tables-in-llms.md
 
-# 001-007. Training Tables in LLMs
+# 008. Training Tables in LLMs
 
 An **LLM is a chain of mathematical transformations**.
 It contains many trainable tables/matrices: **embedding table**, **attention matrices**, **MLP weights**, **output layer**, etc.

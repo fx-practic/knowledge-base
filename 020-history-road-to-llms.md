@@ -1,6 +1,6 @@
-Path: 001-008-history-road-to-llms.md
+Path: 020-history-road-to-llms.md
 
-# 001-008. History Roadmap: How We Reached Modern LLMs
+# 020. History Roadmap: How We Reached Modern LLMs
 
 ## Scope
 

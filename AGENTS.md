@@ -26,10 +26,10 @@ This repo is a structured Markdown knowledge base for AI and LLM notes.
 Examples:
 
 ```text
-001-llm-general-index.md
-001-000-glossary.md
-001-001-data-collection.md
-001-002-tokens.md
+001-general-index.md
+002-glossary.md
+003-data-collection.md
+004-tokens.md
 ```
 
 ## Path rule
@@ -39,7 +39,7 @@ At the beginning of every Markdown file, add a copyable path line.
 Example:
 
 ```text
-Path: 001-002-tokens.md
+Path: 004-tokens.md
 ```
 
 ## Context rule

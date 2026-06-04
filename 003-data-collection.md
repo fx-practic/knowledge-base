@@ -1,6 +1,6 @@
-`Path: 001-001-data-collection.md`
+Path: 003-data-collection.md
 
-# 001-001. Data Collection For LLM Training
+# 003. Data Collection For LLM Training
 
 ## Main idea
 
