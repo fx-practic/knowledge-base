@@ -1,4 +1,4 @@
-Path: 014-causal-attention-mask.md
+Path: core/014-causal-attention-mask.md
 
 # 014. Causal Attention Mask
 

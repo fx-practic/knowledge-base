@@ -1,4 +1,4 @@
-Path: 010-embedding-output-shape-and-positional-information.md
+Path: core/010-embedding-output-shape-and-positional-information.md
 
 # 010. Embedding Output Shape and Positional Information
 

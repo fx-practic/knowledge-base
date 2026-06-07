@@ -1,4 +1,4 @@
-Path: 013-attention-numeric-example-three-tokens.md
+Path: core/013-attention-numeric-example-three-tokens.md
 
 # 013. Numeric Attention Example With Three Tokens
 

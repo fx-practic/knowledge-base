@@ -1,4 +1,4 @@
-Path: 011-attention-heads-in-transformers.md
+Path: core/011-attention-heads-in-transformers.md
 
 # 011. Attention Heads in Transformers
 

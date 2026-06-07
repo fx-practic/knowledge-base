@@ -9,8 +9,8 @@ A mechanism that lets tokens interact and decide which previous tokens are impor
 Used in:
 
 - [005. Model Files](./005-model-files.md)
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
-- [013. Numeric Attention Example With Three Tokens](./013-attention-numeric-example-three-tokens.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
+- [013. Numeric Attention Example With Three Tokens](./core/013-attention-numeric-example-three-tokens.md)
 
 ---
 
@@ -20,8 +20,8 @@ One parallel attention computation inside a transformer layer. A head creates qu
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
-- [013. Numeric Attention Example With Three Tokens](./013-attention-numeric-example-three-tokens.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
+- [013. Numeric Attention Example With Three Tokens](./core/013-attention-numeric-example-three-tokens.md)
 
 ---
 
@@ -31,7 +31,7 @@ Attention with Linear Biases. A positional method that adds a distance-based bia
 
 Used in:
 
-- [010. Embedding Output Shape and Positional Information](./010-embedding-output-shape-and-positional-information.md)
+- [010. Embedding Output Shape and Positional Information](./core/010-embedding-output-shape-and-positional-information.md)
 
 ---
 
@@ -82,9 +82,9 @@ A left-to-right attention rule that lets each token position attend only to itse
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
-- [013. Numeric Attention Example With Three Tokens](./013-attention-numeric-example-three-tokens.md)
-- [014. Causal Attention Mask](./014-causal-attention-mask.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
+- [013. Numeric Attention Example With Three Tokens](./core/013-attention-numeric-example-three-tokens.md)
+- [014. Causal Attention Mask](./core/014-causal-attention-mask.md)
 
 ---
 
@@ -106,7 +106,7 @@ A neural network block inside a transformer layer that transforms token vectors 
 Used in:
 
 - [005. Model Files](./005-model-files.md)
-- [015. Transformer Block After Attention](./015-transformer-block-after-attention.md)
+- [016. Transformer Block After Attention](./core/016-transformer-block-after-attention.md)
 
 ---
 
@@ -136,7 +136,7 @@ The inference-runtime loop that repeatedly asks the model for the next token, ap
 
 Used in:
 
-- [012. Generation Loop](./012-generation-loop.md)
+- [012. Generation Loop](./inference-run/012-generation-loop.md)
 
 ---
 
@@ -146,7 +146,27 @@ Grouped-Query Attention. A modern attention variant where multiple query heads s
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
+
+---
+
+## Inference Runtime
+
+The software system that runs a trained model after training. It handles model calls, generation loop, sampling, KV cache, stop rules, and returning output text.
+
+Related terms:
+
+- model runtime
+- LLM runtime
+- serving runtime
+- inference server
+
+Used in:
+
+- [012. Generation Loop](./inference-run/012-generation-loop.md)
+- [018. Sampler, Temperature, Top-k, and Top-p](./inference-run/018-sampler-temperature-top-k-top-p.md)
+- [019. KV Cache During Generation](./inference-run/019-kv-cache-during-generation.md)
+- [022. Inference Runtime](./inference-run/022-inference-runtime.md)
 
 ---
 
@@ -166,8 +186,8 @@ In attention, a key vector represents how a token position can be matched by que
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
-- [013. Numeric Attention Example With Three Tokens](./013-attention-numeric-example-three-tokens.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
+- [013. Numeric Attention Example With Three Tokens](./core/013-attention-numeric-example-three-tokens.md)
 
 ---
 
@@ -177,8 +197,8 @@ A runtime cache of previous key and value vectors used during generation so the 
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
-- [012. Generation Loop](./012-generation-loop.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
+- [012. Generation Loop](./inference-run/012-generation-loop.md)
 
 ---
 
@@ -218,7 +238,9 @@ Raw output scores before softmax. In LLM generation, logits are used to choose t
 
 Used in:
 
-- [012. Generation Loop](./012-generation-loop.md)
+- [012. Generation Loop](./inference-run/012-generation-loop.md)
+- [017. Output Layer, Logits, and Next Token](./core/017-output-layer-logits-and-next-token.md)
+- [018. Sampler, Temperature, Top-k, and Top-p](./inference-run/018-sampler-temperature-top-k-top-p.md)
 
 ---
 
@@ -228,7 +250,7 @@ Multi-Head Attention. The standard attention design where several attention head
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
 
 ---
 
@@ -238,7 +260,7 @@ Multi-Query Attention. An attention variant with many query heads but shared key
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
 
 ---
 
@@ -248,7 +270,7 @@ Multi-Layer Perceptron. In a transformer block, this is the feed-forward network
 
 Used in:
 
-- [015. Transformer Block After Attention](./015-transformer-block-after-attention.md)
+- [016. Transformer Block After Attention](./core/016-transformer-block-after-attention.md)
 
 ---
 
@@ -288,8 +310,8 @@ A learned matrix that transforms vectors from one representation space into anot
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
-- [013. Numeric Attention Example With Three Tokens](./013-attention-numeric-example-three-tokens.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
+- [013. Numeric Attention Example With Three Tokens](./core/013-attention-numeric-example-three-tokens.md)
 
 ---
 
@@ -299,8 +321,8 @@ In attention, a query vector represents what a token position is looking for whe
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
-- [013. Numeric Attention Example With Three Tokens](./013-attention-numeric-example-three-tokens.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
+- [013. Numeric Attention Example With Three Tokens](./core/013-attention-numeric-example-three-tokens.md)
 
 ---
 
@@ -314,13 +336,24 @@ Used in:
 
 ---
 
+## Residual Add
+
+An operation that adds a layer's original input matrix back to the layer's transformation output, usually with matching shape `T x D`.
+
+Used in:
+
+- [016. Transformer Block After Attention](./core/016-transformer-block-after-attention.md)
+- [015. Residual Add](./core/015-residual-add.md)
+
+---
+
 ## RoPE
 
 Rotary Position Encoding. A positional method that injects position information by rotating parts of query and key vectors.
 
 Used in:
 
-- [010. Embedding Output Shape and Positional Information](./010-embedding-output-shape-and-positional-information.md)
+- [010. Embedding Output Shape and Positional Information](./core/010-embedding-output-shape-and-positional-information.md)
 
 ---
 
@@ -340,7 +373,7 @@ The runtime component that chooses the next token from model logits or probabili
 
 Used in:
 
-- [012. Generation Loop](./012-generation-loop.md)
+- [012. Generation Loop](./inference-run/012-generation-loop.md)
 
 ---
 
@@ -433,8 +466,8 @@ In attention, a value vector contains the information that will be mixed into up
 
 Used in:
 
-- [011. Attention Heads in Transformers](./011-attention-heads-in-transformers.md)
-- [013. Numeric Attention Example With Three Tokens](./013-attention-numeric-example-three-tokens.md)
+- [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
+- [013. Numeric Attention Example With Three Tokens](./core/013-attention-numeric-example-three-tokens.md)
 
 ---
 

@@ -1,4 +1,4 @@
-Path: 007-training.md
+Path: training-run/007-training.md
 
 # 007. Training
 

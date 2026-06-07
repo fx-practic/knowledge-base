@@ -1,6 +1,6 @@
-Path: 018-kv-cache-during-generation.md
+Path: inference-run/019-kv-cache-during-generation.md
 
-# 018. KV Cache During Generation
+# 019. KV Cache During Generation
 
 ## Core idea
 

@@ -1,6 +1,6 @@
-Path: 016-output-layer-logits-and-next-token.md
+Path: core/017-output-layer-logits-and-next-token.md
 
-# 016. Output Layer, Logits, and Next Token
+# 017. Output Layer, Logits, and Next Token
 
 ## Core idea
 

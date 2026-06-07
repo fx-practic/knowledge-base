@@ -1,6 +1,6 @@
-Path: 015-transformer-block-after-attention.md
+Path: core/016-transformer-block-after-attention.md
 
-# 015. Transformer Block After Attention
+# 016. Transformer Block After Attention
 
 ## Core idea
 

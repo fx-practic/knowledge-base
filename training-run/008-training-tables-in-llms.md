@@ -1,4 +1,4 @@
-Path: 008-training-tables-in-llms.md
+Path: training-run/008-training-tables-in-llms.md
 
 # 008. Training Tables in LLMs
 

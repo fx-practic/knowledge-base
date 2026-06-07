@@ -1,4 +1,4 @@
-Path: 012-generation-loop.md
+Path: inference-run/012-generation-loop.md
 
 # 012. Generation Loop
 
