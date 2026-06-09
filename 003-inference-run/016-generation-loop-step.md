@@ -1,6 +1,6 @@
-Path: inference-run/012-generation-loop.md
+Path: 003-inference-run/016-generation-loop-step.md
 
-# 012. Generation Loop
+# 016. Generation Loop Step
 
 ## Core idea
 

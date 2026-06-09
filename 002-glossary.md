@@ -136,7 +136,7 @@ The inference-runtime loop that repeatedly asks the model for the next token, ap
 
 Used in:
 
-- [012. Generation Loop](./inference-run/012-generation-loop.md)
+- [016. Generation Loop Step](./003-inference-run/016-generation-loop-step.md)
 
 ---
 
@@ -163,10 +163,10 @@ Related terms:
 
 Used in:
 
-- [012. Generation Loop](./inference-run/012-generation-loop.md)
-- [018. Sampler, Temperature, Top-k, and Top-p](./inference-run/018-sampler-temperature-top-k-top-p.md)
-- [019. KV Cache During Generation](./inference-run/019-kv-cache-during-generation.md)
-- [022. Inference Runtime](./inference-run/022-inference-runtime.md)
+- [016. Generation Loop Step](./003-inference-run/016-generation-loop-step.md)
+- [013. Sampler Step](./003-inference-run/013-sampler-step.md)
+- [014. KV Cache Step](./003-inference-run/014-kv-cache-step.md)
+- [005. Inference Runtime Step](./003-inference-run/005-inference-runtime-step.md)
 
 ---
 
@@ -198,7 +198,7 @@ A runtime cache of previous key and value vectors used during generation so the 
 Used in:
 
 - [011. Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md)
-- [012. Generation Loop](./inference-run/012-generation-loop.md)
+- [016. Generation Loop Step](./003-inference-run/016-generation-loop-step.md)
 
 ---
 
@@ -238,9 +238,9 @@ Raw output scores before softmax. In LLM generation, logits are used to choose t
 
 Used in:
 
-- [012. Generation Loop](./inference-run/012-generation-loop.md)
+- [016. Generation Loop Step](./003-inference-run/016-generation-loop-step.md)
 - [017. Output Layer, Logits, and Next Token](./core/017-output-layer-logits-and-next-token.md)
-- [018. Sampler, Temperature, Top-k, and Top-p](./inference-run/018-sampler-temperature-top-k-top-p.md)
+- [013. Sampler Step](./003-inference-run/013-sampler-step.md)
 
 ---
 
@@ -373,7 +373,7 @@ The runtime component that chooses the next token from model logits or probabili
 
 Used in:
 
-- [012. Generation Loop](./inference-run/012-generation-loop.md)
+- [016. Generation Loop Step](./003-inference-run/016-generation-loop-step.md)
 
 ---
 

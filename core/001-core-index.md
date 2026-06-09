@@ -21,5 +21,5 @@ Core pages explain reusable mechanisms used by both training and inference.
 
 | Run | How it uses core pages |
 | --- | --- |
-| [Training run](../training-run/001-training-run-index.md) | Uses core forward operations, then adds loss, backpropagation, and optimizer updates. |
-| [Inference run](../inference-run/001-inference-run-index.md) | Uses core forward operations, then adds runtime, generation loop, sampler, and KV cache. |
+| [Training run](../002-training-run/002-training-run-index.md) | Uses core forward operations, then adds loss, backpropagation, and optimizer updates. |
+| [Inference run](../003-inference-run/003-inference-run-index.md) | Uses core forward operations, then adds runtime, generation loop, sampler, and KV cache. |

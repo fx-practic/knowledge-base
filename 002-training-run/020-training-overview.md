@@ -1,6 +1,6 @@
-Path: training-run/007-training.md
+Path: 002-training-run/020-training-overview.md
 
-# 007. Training
+# 020. Training Overview
 
 ## Core distinction
 

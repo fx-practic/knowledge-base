@@ -15,15 +15,16 @@ This repo is a structured Markdown knowledge base for AI and LLM notes.
 - Current topic: `LLM`.
 - Store global KB pages in the repository root.
 - Store reusable model-operation pages in `core/`.
-- Store training-specific run pages in `training-run/`.
-- Store inference-specific run pages in `inference-run/`.
+- Store training-specific run pages in `002-training-run/`.
+- Store inference-specific run pages in `003-inference-run/`.
 - Do not create `machine-learning/`, `python/`, or `git/` now.
 - Do not rewrite unrelated files.
 
 ## Naming rules
 
 - Every numbered Markdown page must start with a three-digit number.
-- Page numbers are unique inside one folder. Different folders may each have their own `001` index page.
+- Page numbers are unique inside one folder.
+- The main folder index order is `core/001`, `002-training-run/002`, then `003-inference-run/003`.
 - Use lowercase names and dashes.
 - Keep the numbering style already used in the repository.
 
@@ -36,10 +37,10 @@ Examples:
 004-tokens.md
 core/001-core-index.md
 core/010-embedding-output-shape-and-positional-information.md
-training-run/001-training-run-index.md
-training-run/007-training.md
-inference-run/001-inference-run-index.md
-inference-run/012-generation-loop.md
+002-training-run/002-training-run-index.md
+002-training-run/003-data-curation-step.md
+003-inference-run/003-inference-run-index.md
+003-inference-run/004-prompt-tokenization-step.md
 ```
 
 ## Path rule

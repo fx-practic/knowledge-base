@@ -1,6 +1,6 @@
-Path: inference-run/019-kv-cache-during-generation.md
+Path: 003-inference-run/014-kv-cache-step.md
 
-# 019. KV Cache During Generation
+# 014. KV Cache Step
 
 ## Core idea
 

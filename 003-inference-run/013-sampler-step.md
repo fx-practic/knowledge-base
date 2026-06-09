@@ -1,6 +1,6 @@
-Path: inference-run/018-sampler-temperature-top-k-top-p.md
+Path: 003-inference-run/013-sampler-step.md
 
-# 018. Sampler, Temperature, Top-k, and Top-p
+# 013. Sampler Step
 
 ## Core idea
 

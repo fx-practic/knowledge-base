@@ -1,6 +1,6 @@
-Path: inference-run/022-inference-runtime.md
+Path: 003-inference-run/005-inference-runtime-step.md
 
-# 022. Inference Runtime
+# 005. Inference Runtime Step
 
 ## Core idea
 
