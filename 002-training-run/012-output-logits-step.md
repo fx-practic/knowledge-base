@@ -32,7 +32,7 @@ hidden states -> output projection -> logits
 | --- | --- | --- |
 | Logits | `T x VocabSize` | Raw scores for possible next tokens at each position. |
 
-With a batch:
+With a mini-batch:
 
 ```text
 B x T x D

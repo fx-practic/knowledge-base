@@ -116,7 +116,7 @@ token IDs
 The parameter update is joint:
 
 ```text
-one batch
+one mini-batch
 one prediction task
 one loss signal
 many trainable tensors updated
@@ -124,6 +124,8 @@ many trainable tensors updated
 
 This does **not** mean these are separate models.
 They are different parameter groups inside one connected neural network.
+
+See [Mini-batch](./002-glossary.md#mini-batch).
 
 ---
 

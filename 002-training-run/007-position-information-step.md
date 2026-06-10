@@ -10,7 +10,7 @@ The model adds information about token order.
 | --- | --- | --- |
 | Token vectors, shape `T x D`. | Add or inject position information. | Position-aware token vectors, shape `T x D`. |
 
-With a batch:
+With a mini-batch:
 
 ```text
 B x T x D

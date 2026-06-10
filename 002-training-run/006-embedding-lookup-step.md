@@ -10,11 +10,19 @@ Token IDs are converted into vectors.
 | --- | --- | --- |
 | Token IDs, shape `T`. | Look up one row in the embedding table for each token ID. | Token vector matrix, shape `T x D`. |
 
-With a batch:
+With a mini-batch:
 
 ```text
 B x T
 -> B x T x D
+```
+
+Meaning:
+
+```text
+B training samples
+each sample has T token IDs
+each token ID becomes a D-dimensional vector
 ```
 
 ## What this step means

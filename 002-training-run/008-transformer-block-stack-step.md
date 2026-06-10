@@ -10,7 +10,7 @@ The position-aware vectors pass through many transformer blocks.
 | --- | --- | --- |
 | Matrix `X`, shape `T x D`. | Apply transformer block 1, then block 2, and so on. | Updated matrix, shape `T x D`. |
 
-With a batch:
+With a mini-batch:
 
 ```text
 B x T x D

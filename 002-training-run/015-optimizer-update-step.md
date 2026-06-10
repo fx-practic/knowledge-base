@@ -21,7 +21,7 @@ new_weight = weight - learning_rate * gradient
 Backpropagation calculates gradients. The optimizer decides how to use those
 gradients to update the weights.
 
-After this step, the model has changed. The next training batch will use the
+After this step, the model has changed. The next mini-batch will use the
 new parameter values.
 
 ## Related page
