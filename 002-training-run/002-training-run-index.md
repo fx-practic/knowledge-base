@@ -4,9 +4,7 @@ Path: 002-training-run/002-training-run-index.md
 
 Training is the run where model parameters are changed.
 
-This folder is ordered as a step-by-step path. The short step pages show the
-operation order. Deeper shared explanations stay in `core/` to avoid copying
-the same content into both training and inference.
+This folder is ordered as a step-by-step path. The short step pages show the operation order. Deeper shared explanations stay in `core/` to avoid copying the same content into both training and inference.
 
 ## Main flow
 
@@ -40,9 +38,8 @@ training data
 | **014** | [Backpropagation and Gradients Step](./014-backpropagation-gradients-step.md) | Calculate gradients using the computation graph. |
 | **015** | [Optimizer Update Step](./015-optimizer-update-step.md) | Change model weights. |
 | **020** | [Training Overview](./020-training-overview.md) | Older compact training overview. |
-| **021** | [Training Tables in LLMs](./021-training-tables-in-llms.md) | Deeper notes about trainable tables, gradients, and updates. |
+| **021** | [Trainable Tensors In LLMs](./021-training-tables-in-llms.md) | Deeper notes about trainable tensors, gradients, and updates. |
 
 ## Training-specific difference
 
-Training does not stop after choosing a next token. It compares predictions
-with targets, calculates loss, runs backpropagation, and updates weights.
+Training does not stop after choosing a next token. It compares predictions with targets, calculates loss, runs backpropagation, and updates weights.
