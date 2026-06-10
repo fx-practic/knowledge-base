@@ -2,13 +2,35 @@ Path: 002-training-run/012-output-logits-step.md
 
 # 012. Output Logits Step
 
-The model converts final hidden vectors into scores for vocabulary tokens.
+## Purpose
 
-## Transformation
+The model converts final hidden vectors into raw vocabulary scores.
 
-| Input | Operation | Output |
+## Input form
+
+| Object | Shape | Meaning |
 | --- | --- | --- |
-| Final hidden matrix, shape `T x D`. | Output projection to vocabulary size. | Logits matrix, shape `T x VocabSize`. |
+| Final hidden matrix | `T x D` | One final vector row per token position. |
+
+With a batch:
+
+```text
+B x T x D
+```
+
+## Operation
+
+Apply the output projection to each token row.
+
+```text
+hidden states -> output projection -> logits
+```
+
+## Output form
+
+| Object | Shape | Meaning |
+| --- | --- | --- |
+| Logits | `T x VocabSize` | Raw scores for possible next tokens at each position. |
 
 With a batch:
 
@@ -17,10 +39,20 @@ B x T x D
 -> B x T x VocabSize
 ```
 
-## What this step means
+## What changed physically
 
-Each row contains raw scores for possible next tokens at that position. These
-raw scores are logits, not probabilities yet.
+Each `D`-wide hidden vector became a `VocabSize`-wide score row.
+
+## What did not change
+
+Logits are not probabilities yet. Softmax or cross-entropy processing happens after this step.
+
+## Related glossary terms
+
+- [Hidden State](../002-glossary.md#hidden-state)
+- [Logits](../002-glossary.md#logits)
+- [Output Layer](../002-glossary.md#output-layer)
+- [Vocabulary Size](../002-glossary.md#vocabulary-size)
 
 ## Related page
 
