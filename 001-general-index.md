@@ -17,10 +17,11 @@ This repository is the knowledge base root.
 | Number | Page | Purpose |
 | --- | --- | --- |
 | **002** | [Glossary](./002-glossary.md) | Terms and two-way links. |
-| **003** | [Data Collection For LLM Training](./003-data-collection.md) | How internet, code, and other data are collected, filtered, and used for training corpora. |
+| **003** | [Data Collection For LLM Training](./003-data-collection.md) | How data is collected, filtered, and used for training corpora. |
 | **004** | [Tokens](./004-tokens.md) | Tokens, tokenizers, vocabulary, tokenization algorithms. |
 | **005** | [What An LLM Model Is Built From And What Files Store It](./005-model-files.md) | What physical parts a saved LLM contains and which files store them. |
 | **006** | [ML Training vs LLM Training Terms](./006-ml-training-vs-llm-training-terms.md) | Maps classic ML terms such as sample, label, target, and prediction to LLM training terms. |
+| **007** | [Bridge From Classic MLP Training To LLM Training](./007-mlp-reader-bridge.md) | Explains LLM training for a reader familiar with classic multi-layer perceptrons. |
 | **010** | [Embedding Output Shape and Positional Information](./core/010-embedding-output-shape-and-positional-information.md) | Why embedding lookup produces a T x D matrix and how models add token-position information. |
 | **011** | [Attention Heads in Transformers](./core/011-attention-heads-in-transformers.md) | How parallel attention heads calculate token relationships, combine outputs, and use KV caches during generation. |
 | **013** | [Numeric Attention Example With Three Tokens](./core/013-attention-numeric-example-three-tokens.md) | A concrete three-token, five-dimension worked example showing every Q, K, V, score, attention, and output table. |
@@ -34,8 +35,7 @@ This repository is the knowledge base root.
 
 ## Numbering rule
 
-Page numbers are unique inside one folder. The folder indexes make the main
-learning order visible:
+Page numbers are unique inside one folder. The folder indexes make the main learning order visible:
 
 ```text
 core/001
