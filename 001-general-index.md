@@ -45,4 +45,4 @@ core/001
 
 When referring to a root page in chat, use the page number, for example: 004.
 For folder pages, use the folder and number, for example:
-`002-training-run/009` or `003-inference-run/013`.
+`002-training-run/009` or `003-inference-run/015`.

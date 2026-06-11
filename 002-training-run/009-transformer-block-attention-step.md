@@ -1,9 +1,9 @@
-Path: 002-training-run/009-attention-step.md
+Path: 002-training-run/009-transformer-block-attention-step.md
 
-# 009. Attention Step
+# 009. Transformer Block: Attention Step
 
-Attention lets token positions read information from other allowed token
-positions.
+Attention is a sub-operation inside each transformer block. It lets token
+positions read information from other allowed token positions.
 
 ## Transformation
 
@@ -19,6 +19,22 @@ positions.
 The attention step does not destroy the token rows. After attention, the model
 still has one row per token position, but each row now contains information
 mixed from other allowed positions.
+
+Approximate sense: attention lets each token decide which other tokens to read
+from in the current sequence.
+
+Why multiple heads? Because one head may learn one kind of relationship, and
+another head may learn another kind. For example:
+
+| Head | Possible learned pattern |
+| --- | --- |
+| Head 1 | Nearby words. |
+| Head 2 | Subject-verb relation. |
+| Head 3 | Punctuation or structure. |
+| Head 4 | Long-distance reference. |
+
+These meanings are not guaranteed to be cleanly human-readable. They are memory
+hooks for why multiple heads can be useful.
 
 ## Related pages
 

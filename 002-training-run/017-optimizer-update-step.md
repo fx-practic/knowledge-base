@@ -1,6 +1,6 @@
-Path: 002-training-run/015-optimizer-update-step.md
+Path: 002-training-run/017-optimizer-update-step.md
 
-# 015. Optimizer Update Step
+# 017. Optimizer Update Step
 
 The optimizer changes model weights.
 

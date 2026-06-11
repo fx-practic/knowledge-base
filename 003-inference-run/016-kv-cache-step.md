@@ -1,6 +1,6 @@
-Path: 003-inference-run/014-kv-cache-step.md
+Path: 003-inference-run/016-kv-cache-step.md
 
-# 014. KV Cache Step
+# 016. KV Cache Step
 
 ## Core idea
 

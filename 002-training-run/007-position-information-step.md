@@ -29,6 +29,10 @@ man bites dog
 The tokens are similar, but the meaning is different because the positions are
 different.
 
+Approximate sense: this step tells the model where each token is located in the
+sequence, so the same tokens in a different order can produce a different
+internal representation.
+
 ## Related page
 
 See [Embedding Output Shape and Positional Information](../core/010-embedding-output-shape-and-positional-information.md).

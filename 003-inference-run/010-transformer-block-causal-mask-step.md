@@ -1,8 +1,9 @@
-Path: 003-inference-run/010-causal-mask-step.md
+Path: 003-inference-run/010-transformer-block-causal-mask-step.md
 
-# 010. Causal Mask Step
+# 010. Transformer Block: Causal Mask Step
 
-The causal mask prevents looking into future positions.
+The causal mask is used inside the transformer block's attention operation. It
+prevents looking into future positions.
 
 ## Transformation
 
@@ -15,6 +16,10 @@ The causal mask prevents looking into future positions.
 For the initial prompt pass, each prompt token position may only use allowed
 previous/current positions. During one-token generation with KV cache, the new
 token has no future generated tokens to inspect.
+
+Approximate sense: the mask preserves left-to-right generation. The model can
+use existing context, but it cannot read future tokens that have not been
+generated yet.
 
 ## Related page
 

@@ -315,9 +315,9 @@ mini-batch 3 -> forward -> loss -> backpropagation -> optimizer update
 Used in:
 
 - [004. Tokenization Step](./002-training-run/004-tokenization-step.md)
-- [006. Embedding Lookup Step](./002-training-run/006-embedding-lookup-step.md)
-- [013. Loss Step](./002-training-run/013-loss-step.md)
-- [015. Optimizer Update Step](./002-training-run/015-optimizer-update-step.md)
+- [006. Embedding Lookup and Mini-Batches Step](./002-training-run/006-embedding-lookup-and-mini-batches-step.md)
+- [015. Loss Step](./002-training-run/015-loss-step.md)
+- [017. Optimizer Update Step](./002-training-run/017-optimizer-update-step.md)
 
 ---
 

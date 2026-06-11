@@ -1,6 +1,6 @@
-Path: 002-training-run/012-output-logits-step.md
+Path: 002-training-run/014-output-logits-step.md
 
-# 012. Output Logits Step
+# 014. Output Logits Step
 
 ## Purpose
 
@@ -12,7 +12,7 @@ The model converts final hidden vectors into raw vocabulary scores.
 | --- | --- | --- |
 | Final hidden matrix | `T x D` | One final vector row per token position. |
 
-With a batch:
+With a mini-batch:
 
 ```text
 B x T x D
@@ -42,6 +42,10 @@ B x T x D
 ## What changed physically
 
 Each `D`-wide hidden vector became a `VocabSize`-wide score row.
+
+Approximate sense: this step converts internal model features into one score
+for every possible vocabulary token. Higher score means "more likely next
+token" before probability processing.
 
 ## What did not change
 

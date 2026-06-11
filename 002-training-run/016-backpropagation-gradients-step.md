@@ -1,6 +1,6 @@
-Path: 002-training-run/014-backpropagation-gradients-step.md
+Path: 002-training-run/016-backpropagation-gradients-step.md
 
-# 014. Backpropagation and Gradients Step
+# 016. Backpropagation and Gradients Step
 
 Backpropagation calculates gradients for trainable parameters.
 

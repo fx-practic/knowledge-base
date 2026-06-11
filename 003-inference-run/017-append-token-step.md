@@ -1,6 +1,6 @@
-Path: 003-inference-run/015-append-token-step.md
+Path: 003-inference-run/017-append-token-step.md
 
-# 015. Append Token Step
+# 017. Append Token Step
 
 The selected token becomes part of the context.
 
@@ -24,4 +24,4 @@ runtime repeatedly appends the selected token and asks for another next token.
 
 ## Related page
 
-See [Generation Loop Step](./016-generation-loop-step.md).
+See [Generation Loop Step](./018-generation-loop-step.md).

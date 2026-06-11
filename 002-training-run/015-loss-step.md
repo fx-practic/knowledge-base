@@ -1,6 +1,6 @@
-Path: 002-training-run/013-loss-step.md
+Path: 002-training-run/015-loss-step.md
 
-# 013. Loss Step
+# 015. Loss Step
 
 ## Purpose
 

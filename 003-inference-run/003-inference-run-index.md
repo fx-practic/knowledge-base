@@ -31,14 +31,16 @@ user prompt
 | **006** | [Embedding Lookup Step](./006-embedding-lookup-step.md) | Convert token IDs into vectors. |
 | **007** | [Position Information Step](./007-position-information-step.md) | Add or inject token order information. |
 | **008** | [Transformer Block Stack Step](./008-transformer-block-stack-step.md) | Pass vectors through fixed trained transformer blocks. |
-| **009** | [Attention Step](./009-attention-step.md) | Mix information between allowed token positions. |
-| **010** | [Causal Mask Step](./010-causal-mask-step.md) | Preserve left-to-right next-token behavior. |
-| **011** | [Residual, Normalization, and MLP Step](./011-residual-normalization-mlp-step.md) | Finish the transformer block transformations. |
-| **012** | [Output Logits Step](./012-output-logits-step.md) | Produce scores for possible next tokens. |
-| **013** | [Sampler Step](./013-sampler-step.md) | Choose one token from logits or probabilities. |
-| **014** | [KV Cache Step](./014-kv-cache-step.md) | Reuse previous key/value vectors during generation. |
-| **015** | [Append Token Step](./015-append-token-step.md) | Add the selected token to the context. |
-| **016** | [Generation Loop Step](./016-generation-loop-step.md) | Repeat next-token generation until a stop rule. |
+| **009** | [Transformer Block: Attention Step](./009-transformer-block-attention-step.md) | Inside each transformer block, mix information between allowed token positions. |
+| **010** | [Transformer Block: Causal Mask Step](./010-transformer-block-causal-mask-step.md) | Inside attention, preserve left-to-right next-token behavior. |
+| **011** | [Transformer Block: Residual Add Step](./011-transformer-block-residual-add-step.md) | Add the block input back to the attention output. |
+| **012** | [Transformer Block: Normalization Step](./012-transformer-block-normalization-step.md) | Stabilize numeric scale before the next sub-operation. |
+| **013** | [Transformer Block: MLP Step](./013-transformer-block-mlp-step.md) | Transform each token row internally after attention. |
+| **014** | [Output Logits Step](./014-output-logits-step.md) | Produce scores for possible next tokens. |
+| **015** | [Sampler Step](./015-sampler-step.md) | Choose one token from logits or probabilities. |
+| **016** | [KV Cache Step](./016-kv-cache-step.md) | Reuse previous key/value vectors during generation. |
+| **017** | [Append Token Step](./017-append-token-step.md) | Add the selected token to the context. |
+| **018** | [Generation Loop Step](./018-generation-loop-step.md) | Repeat next-token generation until a stop rule. |
 
 ## Inference-specific difference
 

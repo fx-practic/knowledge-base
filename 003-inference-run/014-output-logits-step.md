@@ -1,6 +1,6 @@
-Path: 003-inference-run/012-output-logits-step.md
+Path: 003-inference-run/014-output-logits-step.md
 
-# 012. Output Logits Step
+# 014. Output Logits Step
 
 The model converts the final hidden vector into raw scores for possible next tokens.
 
@@ -15,6 +15,9 @@ The model converts the final hidden vector into raw scores for possible next tok
 During inference, the runtime usually needs the logits for the last position.
 
 Logits are raw scores, not probabilities.
+
+Approximate sense: this step converts the final internal vector into one score
+for every possible next token. The sampler later chooses from these scores.
 
 ## Related page
 

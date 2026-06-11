@@ -1,6 +1,6 @@
-Path: 003-inference-run/013-sampler-step.md
+Path: 003-inference-run/015-sampler-step.md
 
-# 013. Sampler Step
+# 015. Sampler Step
 
 ## Core idea
 
