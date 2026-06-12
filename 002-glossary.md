@@ -367,6 +367,16 @@ In attention, a query vector represents what a token position is looking for whe
 
 Retrieval-Augmented Generation.
 
+A runtime pattern where a system retrieves relevant external documents or
+passages and places them into the model context before generation.
+
+RAG usually does not change the base model weights. It improves output by
+changing what information the model can see while answering.
+
+Related page:
+
+- [004. RAG Run Index](./004-rag-run/004-rag-run-index.md)
+
 ---
 
 ## Residual Add
