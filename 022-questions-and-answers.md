@@ -491,3 +491,335 @@ RAG normally does not permanently teach the model new facts. It improves output
 by supplying external evidence during inference.
 
 That makes it important both for developers and for production AI products.
+
+---
+
+## How Does RAG Work During Generation And Tool Calls?
+
+**Question.**
+
+How is RAG pronounced? In normal generation, is RAG content added only once
+before generation starts? And in agentic RAG, what does it mean that "the model
+decides it needs more information" if the model is only weights?
+
+**Answer.**
+
+RAG is usually pronounced like the English word:
+
+```text
+rag
+```
+
+Some people also spell it out:
+
+```text
+R-A-G
+```
+
+RAG means Retrieval-Augmented Generation.
+
+## Simple RAG
+
+In simple RAG, retrieval usually happens once before generation starts:
+
+```text
+user query
+-> retrieve relevant documents or chunks
+-> add retrieved text into the prompt/context
+-> start generation
+```
+
+The retrieved text is not normally added again after every generated token.
+
+Instead, the model generates token by token using the same context:
+
+```text
+token 1 uses: prompt + RAG context
+token 2 uses: prompt + RAG context + token 1
+token 3 uses: prompt + RAG context + token 1 + token 2
+```
+
+The RAG content stays available because it is part of the active context.
+
+## Agentic RAG
+
+In agentic RAG, retrieval can happen more than once.
+
+Example:
+
+```text
+user query
+-> retrieve initial sources
+-> model begins response or reasoning
+-> model emits a retrieval/tool-call request
+-> application runs retrieval again
+-> retrieved result is added back to context
+-> model continues
+```
+
+This still does not mean retrieval happens after every token. It usually happens
+at tool-call or search steps.
+
+## What "model decides" really means
+
+"The model decides" is shorthand.
+
+More precisely:
+
+```text
+the model generates tokens that represent a tool-call or retrieval request
+```
+
+For example, the model may generate text shaped like:
+
+```json
+{"tool":"search","query":"latest OpenAI pricing"}
+```
+
+The model does not execute the search. The surrounding application or runtime
+parses this output and decides whether to run the tool.
+
+The real flow is:
+
+```text
+prompt says tools are available
+-> model generates tokens
+-> those tokens form a tool-call request
+-> application parses the request
+-> application executes the tool or retrieval
+-> result is appended to context
+-> model continues generation
+```
+
+So "model decides it needs more information" means:
+
+```text
+the model emitted a retrieval/tool-call request
+```
+
+not:
+
+```text
+the weights consciously decided something
+```
+
+## Why exact tool-call JSON can appear
+
+The model can generate structured text because JSON is still just text tokens.
+
+This:
+
+```json
+{"tool":"search","query":"latest OpenAI pricing"}
+```
+
+is generated token by token, just like:
+
+```text
+Hello world
+```
+
+The difference is that the application treats the structured output as a
+command-like request instead of normal user-visible answer text.
+
+## Core conclusion
+
+Simple RAG usually retrieves once before generation.
+
+Agentic RAG may retrieve again when the model emits a tool-call or retrieval
+request.
+
+The model generates the request as tokens. The application executes the tool.
+
+---
+
+## How Are Human Brains And LLMs Similar And Different?
+
+**Question.**
+
+Human brains often predict the future: a player predicts a ball trajectory, a
+lawyer predicts an opponent's move, and an entrepreneur predicts market
+behavior. LLMs also predict likely next tokens. If tools, memory, robots, and
+feedback are added to an LLM, could it emulate human thinking and create new
+knowledge?
+
+**Answer.**
+
+There is an important similarity:
+
+```text
+human thinking includes prediction
+LLM generation includes prediction
+```
+
+Humans constantly estimate likely futures:
+
+```text
+where the ball will go
+what another person will do
+what argument will work
+what action will cause which result
+```
+
+An LLM estimates likely next tokens:
+
+```text
+current context
+-> probability distribution over next tokens
+-> chosen next token
+```
+
+So humans and LLMs are not completely unrelated. Prediction is central in both.
+
+## Main similarity
+
+| Human brain | LLM |
+| --- | --- |
+| Predicts likely future states and actions. | Predicts likely next tokens. |
+| Uses memory and context. | Uses prompt/context and trained weights. |
+| Can use external tools. | Can be connected to tools by an application. |
+| Can learn from feedback. | Can use feedback through context, memory, evaluation, or training. |
+
+## Main difference
+
+The difference is not just "probability vs no probability." Humans also use
+probability-like prediction.
+
+The bigger difference is the whole system around prediction.
+
+| Human | LLM system |
+| --- | --- |
+| Living body with needs, pain, fatigue, emotions, hormones, and survival pressure. | Software model plus runtime; no biological body by default. |
+| Continuous sensory stream from the world. | Receives only provided input unless connected to sensors/tools. |
+| Persistent autobiographical memory. | Has limited context unless an external memory system is added. |
+| Acts directly in the physical world. | Acts only through tools, APIs, robots, or applications. |
+| Learns throughout life through many feedback loops. | Base weights are fixed during inference unless training/fine-tuning is added. |
+
+Short version:
+
+```text
+LLM = prediction engine inside a software runtime
+human = embodied control system that predicts, acts, feels, remembers, and survives
+```
+
+## Are human traits just more tools?
+
+Many human-like abilities can be modeled as extra systems:
+
+```text
+memory
+planning
+vision
+speech
+robotic action
+reward signals
+risk checks
+social feedback
+long-term goals
+```
+
+If these are added around an LLM, the result becomes less like a plain chatbot
+and more like an agent.
+
+But this does not automatically prove it is a full human mind. It may emulate
+many functions of intelligence without duplicating every biological detail.
+
+## Can LLM systems create new knowledge?
+
+Yes, in principle, if they are connected to verification.
+
+For mathematics:
+
+```text
+LLM proposes theorem or proof
+-> formal proof checker verifies it
+-> new mathematical knowledge may be created
+```
+
+For science:
+
+```text
+observe data
+-> form hypothesis
+-> design experiment or simulation
+-> compare result with prediction
+-> update hypothesis
+-> repeat
+```
+
+The LLM alone can generate ideas, but ideas are not automatically knowledge.
+They become knowledge only after proof, experiment, or strong verification.
+
+## What if LLMs are connected to robots and sensors?
+
+If an LLM-like system is connected to:
+
+```text
+robots
+laboratory tools
+telescopes
+scientific databases
+simulators
+symbolic math tools
+theorem provers
+long-term memory
+planning systems
+```
+
+then it could become part of an autonomous discovery system.
+
+The loop would be:
+
+```text
+observe
+-> predict
+-> act or experiment
+-> receive feedback
+-> revise plan or hypothesis
+-> repeat
+```
+
+This is close to the scientific method.
+
+## Is this backpropagation?
+
+Not necessarily.
+
+In normal LLM training, backpropagation changes model weights.
+
+In an agentic discovery system, feedback may update:
+
+```text
+memory
+notes
+hypotheses
+plans
+tool choices
+experiment design
+```
+
+If the system also retrains or fine-tunes the model, then feedback can update
+weights too.
+
+## Core conclusion
+
+Human intelligence and LLM systems both involve prediction.
+
+The main difference is that humans are embodied, persistent, self-maintaining
+living systems, while LLMs are token-prediction models inside designed
+runtimes.
+
+Tool-augmented LLMs can emulate more human-like functions:
+
+```text
+memory
+tools
+sensors
+robots
+experiments
+feedback
+verification
+```
+
+Such systems could help create new knowledge, but generated ideas still need
+proof, experiment, or verification before they count as knowledge.
