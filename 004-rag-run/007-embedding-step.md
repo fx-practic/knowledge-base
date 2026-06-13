@@ -23,6 +23,18 @@ chunk text
 -> vector
 ```
 
+Usually:
+
+```text
+one chunk -> one vector
+```
+
+not:
+
+```text
+each token in the chunk -> one stored RAG vector
+```
+
 The vector is a coordinate representation. Similar meanings should have vectors
 that are close to each other according to the search metric.
 
@@ -35,6 +47,10 @@ table.
 | --- | --- |
 | LLM token embedding table | Converts token IDs into internal vectors inside the model. |
 | RAG embedding model | Converts chunks or queries into vectors for search. |
+
+The RAG vector is used to find text. It is not normally fed directly into the
+LLM as an internal hidden state. After retrieval, the found text is placed into
+the prompt and tokenized normally.
 
 ## Query embeddings
 
@@ -52,4 +68,3 @@ The system then searches for chunk vectors close to the query vector.
 
 Embeddings make semantic retrieval possible. They let the system retrieve text
 that is related by meaning, not only by exact keyword match.
-
