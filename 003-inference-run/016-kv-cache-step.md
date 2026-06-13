@@ -6,14 +6,28 @@ Path: 003-inference-run/016-kv-cache-step.md
 
 During generation, an LLM produces one token at a time.
 
-Attention needs key and value vectors from previous tokens. Recomputing all
-previous keys and values for every new token would be wasteful.
+Attention needs key and value vectors, meaning K and V from attention
+operations, computed from tokens already in the current context. Recomputing
+those key and value vectors for every new token would be wasteful.
 
-The **KV cache** stores previous key and value vectors.
+The **KV cache** stores K/V attention vectors computed from prompt tokens and
+from generated tokens. It does not store the token IDs themselves.
 
 ```text
-KV cache = stored K and V rows from earlier token positions
+KV cache = stored K and V rows computed from context token positions
 ```
+
+Why store K and V?
+
+```text
+new token's Q
++ cached context K
++ cached context V
+= attention output for the new token
+```
+
+The cached K rows are used for matching/scoring. The cached V rows are used for
+mixing information into the new token's updated vector.
 
 ## Without KV cache
 
@@ -26,19 +40,27 @@ token 1, token 2, token 3
 ...
 ```
 
-This repeats work for old tokens.
+This repeats internal K/V calculation work for tokens already in the context.
 
 ## With KV cache
 
-The model stores previous keys and values.
+The runtime stores already-computed key and value vectors.
 
-For a new token, it calculates mostly the new token's projections and reuses
-cached earlier projections.
+For a new token, it calculates mostly the new token's attention projections and
+reuses cached K/V projections from prompt tokens and earlier generated tokens.
+
+Important distinction:
+
+| Object | What it is |
+| --- | --- |
+| Token IDs | The text represented as vocabulary IDs. |
+| K/V vectors | Internal attention vectors computed from token representations. |
+| KV cache | Runtime storage for those already-computed K/V vectors. |
 
 | Object | Shape for one head | Meaning |
 | --- | --- | --- |
-| Past keys | `T_past x d_head` | Stored key rows for previous token positions. |
-| Past values | `T_past x d_head` | Stored value rows for previous token positions. |
+| Past keys | `T_past x d_head` | Stored key rows already computed from context positions. |
+| Past values | `T_past x d_head` | Stored value rows already computed from context positions. |
 | New query | `1 x d_head` | Query row for the current new token. |
 | New key | `1 x d_head` | Key row to append to cache. |
 | New value | `1 x d_head` | Value row to append to cache. |
@@ -59,7 +81,7 @@ For the new token:
 where:
 
 ```text
-T_total = previous tokens + current token
+T_total = cached context positions + current token position
 ```
 
 The output is one updated vector for the current token.
@@ -81,9 +103,9 @@ The cache grows with generated context length.
 
 | Benefit | Explanation |
 | --- | --- |
-| Less repeated computation | Previous key/value vectors are reused. |
-| Faster generation | Each new token can attend to stored context. |
-| Better practical serving | Runtime avoids recalculating old projections repeatedly. |
+| Less repeated computation | Already-computed key/value vectors are reused. |
+| Faster generation | Each new token can attend to cached K/V vectors from the context. |
+| Better practical serving | Runtime avoids recalculating old K/V projections repeatedly. |
 
 ## Important limitation
 
@@ -104,11 +126,12 @@ MHA / MQA / GQA design
 
 The KV cache is not new knowledge and not new training.
 
-It is a runtime memory of previous key and value vectors:
+It is a runtime memory of already-computed key and value vectors:
 
 ```text
-previous token positions
--> stored K and V rows
+prompt tokens and generated tokens
+-> computed K and V rows
+-> stored in KV cache
 -> reused when generating the next token
 ```
 
