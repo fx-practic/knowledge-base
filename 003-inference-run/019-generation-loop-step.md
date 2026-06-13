@@ -1,6 +1,6 @@
-Path: 003-inference-run/018-generation-loop-step.md
+Path: 003-inference-run/019-generation-loop-step.md
 
-# 018. Generation Loop Step
+# 019. Generation Loop Step
 
 ## Core idea
 
@@ -70,8 +70,8 @@ while not stopped:
 return detokenize(tokens)
 ```
 
-This is simplified. Real systems also manage KV cache, maximum token limits,
-streaming, tools, safety policies, and formatting rules.
+This is simplified. Real systems also use runtime wrapper logic for KV cache,
+maximum token limits, streaming, tools, safety policies, and formatting rules.
 
 ## Why short and long answers are possible
 

@@ -24,4 +24,4 @@ runtime repeatedly appends the selected token and asks for another next token.
 
 ## Related page
 
-See [Generation Loop Step](./018-generation-loop-step.md).
+See [Generation Loop Step](./019-generation-loop-step.md).

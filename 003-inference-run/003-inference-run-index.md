@@ -19,6 +19,7 @@ user prompt
 -> sampler
 -> chosen token
 -> append token
+-> runtime wrapper checks
 -> generation loop repeats
 ```
 
@@ -40,7 +41,8 @@ user prompt
 | **015** | [Sampler Step](./015-sampler-step.md) | Choose one token from logits or probabilities. |
 | **016** | [KV Cache Step](./016-kv-cache-step.md) | Reuse previous key/value vectors during generation. |
 | **017** | [Append Token Step](./017-append-token-step.md) | Add the selected token to the context. |
-| **018** | [Generation Loop Step](./018-generation-loop-step.md) | Repeat next-token generation until a stop rule. |
+| **018** | [Runtime Wrapper And Stop Control Step](./018-runtime-wrapper-and-stop-control-step.md) | Stream output, check limits, apply stop rules, and separate runner work from application work. |
+| **019** | [Generation Loop Step](./019-generation-loop-step.md) | Repeat next-token generation until a stop rule. |
 
 ## Inference-specific difference
 
