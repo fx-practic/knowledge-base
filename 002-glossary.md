@@ -379,6 +379,33 @@ Related page:
 
 ---
 
+## Reinforcement Learning
+
+A training approach where an agent tries actions, receives reward or penalty,
+and learns to choose actions that produce higher reward.
+
+In LLM post-training, the "action" is often a generated answer, and the reward
+signal may come from human preference data or a reward model.
+
+Related page:
+
+- [010. RLHF Step](./005-post-training-run/010-rlhf-step.md)
+
+---
+
+## RLHF
+
+Reinforcement Learning from Human Feedback.
+
+An LLM post-training method where human preferences are turned into a reward or
+preference signal, then used to train the model toward more preferred answers.
+
+Related page:
+
+- [010. RLHF Step](./005-post-training-run/010-rlhf-step.md)
+
+---
+
 ## Residual Add
 
 An operation that adds a layer's original input matrix back to the layer's transformation output, usually with matching shape `T x D`.

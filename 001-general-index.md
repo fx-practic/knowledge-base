@@ -12,6 +12,7 @@ This repository is the knowledge base root.
 | `002-training-run/` | [Training Run Index](./002-training-run/002-training-run-index.md) | Step-by-step run where model weights are updated. |
 | `003-inference-run/` | [Inference Run Index](./003-inference-run/003-inference-run-index.md) | Step-by-step run where a trained model produces text. |
 | `004-rag-run/` | [RAG Run Index](./004-rag-run/004-rag-run-index.md) | Step-by-step run where external knowledge is retrieved and added to model context. |
+| `005-post-training-run/` | [Post-Training Run Index](./005-post-training-run/005-post-training-run-index.md) | Step-by-step run where a base model is shaped into a useful assistant. |
 
 ## Pages
 
@@ -34,6 +35,7 @@ This repository is the knowledge base root.
 | **021** | [Transformer Notation and Sizes](./core/021-transformer-notation-and-sizes.md) | Brief reference for transformer symbols, operations, parameter matrices, and realistic size values. |
 | **022** | [Questions And Answers](./022-questions-and-answers.md) | Short Q&A notes about LLMs, Codex, and practical model behavior. |
 | **004-rag-run/004** | [RAG Run Index](./004-rag-run/004-rag-run-index.md) | Runtime retrieval pipeline for improving LLM answers with external context. |
+| **005-post-training-run/005** | [Post-Training Run Index](./005-post-training-run/005-post-training-run-index.md) | Post-training, SFT, preference data, reward models, RLHF, and evaluation. |
 | **100** | [LLM Single Facts](./100-single-facts.md) | Short independent facts about LLM internals. |
 
 ## Numbering rule
@@ -45,6 +47,7 @@ core/001
 002-training-run/002
 003-inference-run/003
 004-rag-run/004
+005-post-training-run/005
 ```
 
 When referring to a root page in chat, use the page number, for example: 004.
