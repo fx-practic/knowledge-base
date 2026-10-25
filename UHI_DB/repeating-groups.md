@@ -56,6 +56,24 @@ So the repeating group is **not identified because OrderNo repeats globally**. I
 
 > Data values alone are not always enough; the source document/business meaning confirms which attributes belong to the parent and which form the repeating child group.
 
+## Rule for choosing the parent identifier
+
+Do **not** ask:
+
+> “Does this number repeat?”
+
+Ask:
+
+> **“Do all rows with this value belong to the same real-world parent record?”**
+
+A parent identifier such as `OrderNo` may repeat many times in a flattened UNF table because one parent record can contain several child records.
+
+If the same `OrderNo` appears on several rows, this does **not** automatically mean it is a bad identifier. Check whether those rows all belong to the same logical order.
+
+If rows with the same value actually represent different real-world parent records, then that attribute alone is **not sufficient** as the parent identifier and another attribute, or a composite identifier, may be required.
+
+**Without the source document or business rules, sometimes you cannot determine the correct parent identifier reliably from the values alone.**
+
 ## Removing Repeating Groups: UNF -> 1NF
 
 **Keep once per order:**
