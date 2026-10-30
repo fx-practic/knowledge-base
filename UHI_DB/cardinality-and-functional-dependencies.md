@@ -59,6 +59,20 @@ It means:
 
 For each value of `A`, there can be only one corresponding value of `B`.
 
+### How to Read the Arrow
+
+> **EN:** The arrow does not show **“who contains whom”**; it shows **which field/value uniquely determines the value of another field**.
+>
+> **RU:** Стрелка показывает не **«кто кого содержит»**, а **по какому полю/значению можно однозначно определить значение другого поля**.
+
+So in:
+
+```text
+A -> B
+```
+
+`B` depends on `A`, because knowing `A` determines exactly one value of `B`.
+
 The word **functional** comes directly from a mathematical function:
 
 ```text
