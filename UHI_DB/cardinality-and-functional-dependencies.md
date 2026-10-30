@@ -1,5 +1,15 @@
 # Cardinality and Functional Dependencies
 
+## Notation Used in These Notes
+
+When showing table structures:
+
+- **Foreign Key**: mark the field with an asterisk `*`, for example `StudentID*`.
+- **Primary Key**: underline the field, for example `<u>StudentID</u>`.
+- If a field is both a **Primary Key (or part of a composite Primary Key)** and a **Foreign Key**, use both markings, for example `<u>StudentID*</u>`.
+
+---
+
 ## Cardinality
 
 There are two different meanings of **cardinality** that should not be confused.
