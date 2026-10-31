@@ -258,7 +258,12 @@ The goal is to place attributes in tables where their dependency is appropriate.
 
 A useful way to think about the final result is:
 
-> **In a properly normalized table, every non-key attribute should depend on the Primary Key, the whole Primary Key, and not on another non-key attribute.**
+> **In a properly normalized table, every non-key attribute is functionally dependent on the whole Primary Key, and there are no other non-key functional dependencies inside the table.**
+
+In practical 3NF terms, this means:
+
+- a non-key attribute must not depend on only part of a composite Primary Key;
+- a non-key attribute must not depend on another non-key attribute.
 
 So a dependency such as:
 
