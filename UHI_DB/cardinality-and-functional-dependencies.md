@@ -245,3 +245,79 @@ EmployeeID -> DepartmentName
 but indirectly, through `DepartmentID`.
 
 This is a transitive dependency.
+
+---
+
+## Practical Normalization Rules
+
+### Functional dependencies are not removed
+
+Normalization does **not** try to eliminate functional dependencies themselves. Functional dependencies are necessary.
+
+The goal is to place attributes in tables where their dependency is appropriate.
+
+A useful way to think about the final result is:
+
+> **In a properly normalized table, every non-key attribute should depend on the Primary Key, the whole Primary Key, and not on another non-key attribute.**
+
+So a dependency such as:
+
+```text
+VisitID -> VisitDate
+```
+
+is good when `VisitID` is the Primary Key of `Visit`.
+
+Normalization removes the **wrong placement of dependencies**, not dependency itself.
+
+- **2NF** removes a dependency on only part of a composite Primary Key.
+- **3NF** removes a dependency of a non-key attribute on another non-key attribute.
+- After moving the attributes, the functional dependency still exists, but it exists in the correct table.
+
+### A Foreign Key does not have to be part of the Primary Key
+
+A table may contain a Foreign Key that is simply a non-key attribute.
+
+Example:
+
+| Visit |
+|---|
+| <u>VisitID</u> |
+| VisitDate |
+| ProcedureID* |
+
+Here `ProcedureID*` is a Foreign Key, but it is **not part of the Primary Key**.
+
+### A field can be both part of a Primary Key and a Foreign Key
+
+Being a Foreign Key does not stop an attribute from also being part of the Primary Key.
+
+Example:
+
+| Treatment |
+|---|
+| <u>PetID*</u> |
+| <u>VisitID*</u> |
+
+Both attributes are Foreign Keys, while together they form the **composite Primary Key**.
+
+### A table may consist only of two Foreign Keys
+
+This is common for a **junction table** representing an M:N relationship.
+
+Example:
+
+| StudentUnit |
+|---|
+| <u>StudentID*</u> |
+| <u>UnitCode*</u> |
+
+The table may contain no other attributes. Each column is a Foreign Key, and together they form the composite Primary Key.
+
+### Row count after normalization — course exercise observation
+
+For the normalization exercises used in this course, when the original UNF rows contain no duplicate records that are removed, at least one resulting relation normally preserves the same number of row occurrences as the original flattened UNF data.
+
+This is often the relationship/junction table because it preserves each original occurrence of the relationship while descriptive attributes are moved to other tables.
+
+Treat this as a **course working rule/observation**, not as the definition of a normal form. The formal definitions of 1NF, 2NF and 3NF are based on structure and dependencies, not on a required row count.
