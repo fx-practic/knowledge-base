@@ -73,7 +73,7 @@ For each value of `A`, there can be only one corresponding value of `B`.
 
 > **EN:** The arrow does not show **“who contains whom”**; it shows **which field/value uniquely determines the value of another field**.
 >
-> **RU:** Стрелка показывает не **«кто кого содержит»**, а **по какому полю/значению можно однозначно определить значение другого поля**.
+> **RU:** Стрелка показывает не **«кто кого содержит», а **по какому полю/значению можно однозначно определить значение другого поля**.
 
 So in:
 
@@ -146,6 +146,19 @@ A functional dependency can use several columns together:
 This means that the combination of `StudentID` and `CourseID` determines exactly one `Grade`.
 
 The columns on the left do not have to be a key, although composite keys are a common case.
+
+### Composite Key Components
+
+Components of a composite key do **not** have to functionally depend on each other.
+
+```text
+(A, B) -> A   // trivial
+(A, B) -> B   // trivial
+A -> B        // not required
+B -> A        // not required
+```
+
+If one component determines the other, the composite key may not be minimal.
 
 ---
 
