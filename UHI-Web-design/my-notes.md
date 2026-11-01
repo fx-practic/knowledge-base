@@ -52,3 +52,17 @@ Source: [Website layout fundamentals — 99designs](https://99designs.com/blog/w
 #### [Grid systems](https://99designs.com/blog/tips/history-of-the-grid-part-2/)
 
 #### White space (negative space)
+
+## The 7 principles of UX design
+
+Source: [The 7 principles of UX design—and how to use them — 99designs](https://99designs.com/blog/web-digital/ux-design-principles/)
+
+| Principle | Meaning / example |
+|---|---|
+| **1. Focus on the user** | Design around users' needs, goals, behaviour and feedback rather than assumptions. |
+| **2. Consistency** | Keep familiar patterns, terminology and interface elements consistent so users know what to expect. |
+| **3. Hierarchy** | Organise information and visual elements so users can quickly understand what is most important and where to go next. |
+| **4. Context is key** | Consider where, when and on which device the product will be used, as well as the user's situation and expectations. |
+| **5. Put the user in control** | Give users clear choices and ways to undo, cancel, go back or recover from mistakes. |
+| **6. Accessibility** | Design so people with different abilities can use the product effectively, including users with disabilities. |
+| **7. Usability testing** | Test the design with real users, observe problems, gather feedback and improve the design iteratively. |
