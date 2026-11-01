@@ -24,3 +24,31 @@ A **high bounce rate** may indicate that the page is irrelevant, slow, difficult
 | **Form** | The appearance of three-dimensional volume or depth. Example: shadows or perspective making a button look raised. |
 | **Space** | The area around and between elements, including whitespace. It improves readability and separation. |
 | **Value** | How light or dark a color or element is. Example: using dark text on a light background for contrast. |
+
+## Website layout fundamentals
+
+Source: [Website layout fundamentals — 99designs](https://99designs.com/blog/web-digital/website-layout-fundamentals/)
+
+### The goals of a website layout
+
+- **Information display**
+- **User engagement**
+- **Branding**
+
+### The website layout design process
+
+- **Identify all content areas.**
+- **Create a series of wireframes and prototypes.**
+- **Test, gather feedback and iterate.**
+
+### The key techniques for an effective website layout
+
+#### [Visual hierarchy](https://99designs.com/blog/tips/6-principles-of-visual-hierarchy/)
+
+#### [Reading patterns](https://99designs.com/blog/tips/visual-hierarchy-landing-page-designs/)
+
+#### Above or below the fold
+
+#### [Grid systems](https://99designs.com/blog/tips/history-of-the-grid-part-2/)
+
+#### White space (negative space)
