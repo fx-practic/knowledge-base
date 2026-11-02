@@ -41,17 +41,21 @@ Source: [Website layout fundamentals — 99designs](https://99designs.com/blog/w
 - **Create a series of wireframes and prototypes.**
 - **Test, gather feedback and iterate.**
 
-### The key techniques for an effective website layout
+### The 6 principles of visual hierarchy
 
-#### [Visual hierarchy](https://99designs.com/blog/tips/6-principles-of-visual-hierarchy/)
+Source: [6 principles of visual hierarchy for designers — 99designs](https://99designs.com/blog/tips/6-principles-of-visual-hierarchy/)
 
-#### [Reading patterns](https://99designs.com/blog/tips/visual-hierarchy-landing-page-designs/)
+#### Reading patterns
 
-#### Above or below the fold
+#### Size
 
-#### [Grid systems](https://99designs.com/blog/tips/history-of-the-grid-part-2/)
+#### Space and texture
 
-#### White space (negative space)
+#### Typeface weight and pairing
+
+#### Color and tint
+
+#### Direction
 
 ## The 7 principles of UX design
 
